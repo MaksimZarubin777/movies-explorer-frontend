@@ -1,0 +1,24 @@
+.techs__list_element {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  width: 90px;
+  height: 60px;
+
+  text-align: center;
+  line-height: 60px;
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@media (max-width:768px) {
+  .techs__list_element {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 57px;
+  }
+}

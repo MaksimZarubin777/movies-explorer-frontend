@@ -1,0 +1,36 @@
+/* позиционируем внутри бока switch
+*/
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #EBEBEB;
+  border-radius: 20px;
+}
+
+/* создаем "круг" */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+/* если нужно менять фон */
+
+/* input:checked + .slider {
+  background-color: #2196F3;
+} */
+
+/* если чекбокс нажат - "круг" движется и меняет фон */
+input:checked + .slider:before {
+  transform: translateX(16px);
+  background-color: #2BE080;
+}

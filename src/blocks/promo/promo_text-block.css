@@ -1,0 +1,17 @@
+.promo__text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width:768px) {
+  .promo__text-block {
+    margin-top: 48px;
+    align-items: center;
+  }
+}
+
+@media (max-width:320px) {
+  .promo__text-block {
+    margin-top: 44px;
+  }
+}

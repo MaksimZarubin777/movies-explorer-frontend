@@ -1,0 +1,13 @@
+/* В этом классе задаем позиционирование и размеры области свитчера  */
+.switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* убираем у инпута(если в блоке будет больше одного инпута навигация по ним - 
+input[type='checkbox'] и тд) стандартный вид чекбокса */
+.switch input {
+  display: none;
+}

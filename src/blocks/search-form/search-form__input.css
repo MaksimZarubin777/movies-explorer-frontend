@@ -1,0 +1,17 @@
+.search-form__input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  height: 50px;
+  width: calc(100% - 54px);
+  margin-right: 10px;
+  background-color: #F9F9F9;
+  border-radius: 8px;
+  
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #A0A0A0;
+}

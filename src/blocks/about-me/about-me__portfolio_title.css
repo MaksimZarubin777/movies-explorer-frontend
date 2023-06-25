@@ -1,0 +1,17 @@
+.about-me__portfolio_title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+  margin-bottom: 31px;
+}
+
+@media (max-width:320px) {
+  .about-me__portfolio_title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

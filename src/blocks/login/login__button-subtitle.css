@@ -1,0 +1,18 @@
+.login__button-subtitle {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-top: 16px;
+  
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #A0A0A0;
+}
+
+@media (max-width:320px) {
+  .login__button-subtitle {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}

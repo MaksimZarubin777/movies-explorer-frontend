@@ -1,0 +1,9 @@
+@import url(../../blocks/navigation/navigation.css);
+@import url(../../blocks/navigation/navigation__container.css);
+@import url(../../blocks/navigation/navigation__links.css);
+@import url(../../blocks/navigation/navigation__container_loggedIn.css);
+@import url(../../blocks/navigation/navigation__text.css);
+@import url(../../blocks/navigation/navigation__films.css);
+@import url(../../blocks/navigation/navigation__profile.css);
+@import url(../../blocks/navigation/navigation__auth.css);
+@import url(../../blocks/navigation/navigation__burger-menu.css);

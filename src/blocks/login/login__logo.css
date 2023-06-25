@@ -1,0 +1,12 @@
+.login__logo {
+  width: 38px;
+  height: 38px;
+  background-image: url(../../images/logo.svg);
+  background-repeat: no-repeat;
+}
+
+@media (max-width:320px) {
+  .login__logo {
+    align-self: center;
+  }
+}

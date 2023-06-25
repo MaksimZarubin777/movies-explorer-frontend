@@ -1,2 +1,1 @@
-# movies-explorer-frontend
-movies-explorer-frontend
+figma - https://disk.yandex.ru/d/bGqGhPFHE4sr8w

@@ -1,0 +1,17 @@
+import Promo from '../Promo/Promo.jsx';
+import AboutProject from '../AboutProject/AboutProject.jsx';
+import Techs from '../Techs/Techs.jsx';
+import AboutMe from '../AboutMe/AboutMe.jsx';
+
+function Main() {
+  return (
+    <>
+    <Promo />
+    <AboutProject />
+    <Techs />
+    <AboutMe />
+    </>
+  );
+}
+
+export default Main;

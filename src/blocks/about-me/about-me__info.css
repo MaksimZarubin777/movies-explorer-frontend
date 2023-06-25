@@ -1,0 +1,23 @@
+.about-me__info {
+  padding-top: 66px;
+  box-sizing: border-box;
+  margin-top: 23px;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width:530px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+    padding-top: 60px;
+  }
+}

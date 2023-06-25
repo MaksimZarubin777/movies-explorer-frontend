@@ -1,0 +1,15 @@
+.page-not-found {
+  padding: 246px 440px 60px 440px;
+}
+
+@media (max-width: 768px) {
+  .page-not-found {
+    padding: 408px 184px 222px 184px;
+  }
+}
+
+@media (max-width: 320px) {
+  .page-not-found {
+    padding: 329px 10px 30px 10px;
+  }
+}

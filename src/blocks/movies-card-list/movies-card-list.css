@@ -1,0 +1,18 @@
+.movies-card-list {
+  padding: 70px 70px 80px 70px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; 
+}
+
+@media (max-width: 768px) {
+  .movies-card-list {
+    padding: 70px 30px 80px 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .movies-card-list{
+    padding: 40px 10px 80px 10px;
+  }
+}

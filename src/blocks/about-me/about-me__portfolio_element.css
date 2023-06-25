@@ -1,0 +1,17 @@
+.about-me__portfolio_element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 19px;
+  padding-top: 19px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #000;
+}
+
+.about-me__portfolio_element:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}

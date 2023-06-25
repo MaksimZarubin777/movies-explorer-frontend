@@ -1,0 +1,24 @@
+.about-project__text-container {
+  margin-top: 23px;
+  padding-top: 70px;
+  
+  border-top: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  column-gap: 40px;
+}
+
+@media (max-width:768px) {
+  .about-project__text-container {
+    column-gap: 30px;
+  }
+}
+
+@media (max-width:370px) {
+  .about-project__text-container {
+    padding-top: 60px;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 56px;
+  }
+}

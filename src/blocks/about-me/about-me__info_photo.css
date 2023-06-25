@@ -1,0 +1,20 @@
+.about-me__info_photo {
+  width: 270px;
+  height: 327px;
+  margin-left: 15px;
+}
+
+@media (max-width:768px) {
+  .about-me__info_photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me__info_photo {
+    width: 292px;
+    height: 352px;
+    margin-left: 0;
+  }
+}

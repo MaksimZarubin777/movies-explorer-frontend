@@ -1,0 +1,7 @@
+.burger-menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  margin-top: 159px;
+}

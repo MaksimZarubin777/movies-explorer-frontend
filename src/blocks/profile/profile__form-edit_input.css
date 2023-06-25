@@ -1,0 +1,15 @@
+.profile__form-edit_input {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13.31px;
+  text-align: right;
+  border: 0;
+  outline: none;
+}
+.profile__form-edit_input::placeholder {
+  color: #000;
+}
+
+.profile__form-edit_input:disabled {
+  background-color: #fff;
+}

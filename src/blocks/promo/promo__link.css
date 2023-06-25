@@ -1,0 +1,26 @@
+.promo__link {
+  font-weight: 400px;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  color: #fff;
+
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .6);
+  width: fit-content;
+  padding: 10px 20px 10px 20px;
+  border-radius: 3px;
+
+  margin-top: 146px;
+}
+
+@media (max-width: 768px) {
+  .promo__link {
+    margin-top: 92px;
+  }
+}
+
+@media (max-width:320px) {
+  .promo__link {
+    margin-top: 80px;
+  }
+}

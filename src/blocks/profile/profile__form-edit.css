@@ -1,0 +1,24 @@
+.profile__form-edit {
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 123px;
+}
+
+@media (max-width: 768px) {
+  .profile__form-edit {
+    margin-top: 96px;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile__form-edit {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile__form-edit {
+    max-width: 300px;
+  }
+}
