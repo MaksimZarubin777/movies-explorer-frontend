@@ -1,0 +1,4 @@
+.search-form__form {
+  display: flex;
+  flex-direction: row;
+}

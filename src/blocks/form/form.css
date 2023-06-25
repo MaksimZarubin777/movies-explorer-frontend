@@ -1,0 +1,15 @@
+.form {
+  margin-top: 40px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 467px;
+}
+
+@media (max-width: 320px) {
+  .form {
+    margin-top: 80px;
+  }
+}

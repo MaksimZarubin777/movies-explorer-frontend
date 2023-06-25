@@ -1,0 +1,17 @@
+.search-form {
+  height: 228px;
+  padding: 80px 70px 10px 70px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    padding: 80px 30px 10px 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .search-form {
+    padding: 80px 14px 10px 14px;
+  }
+}

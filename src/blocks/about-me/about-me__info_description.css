@@ -1,0 +1,26 @@
+.about-me__info_description {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  margin-top: 26px;
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media (max-width:768px) {
+  .about-me__info_description {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 20px;
+    max-width: 364px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me__info_description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

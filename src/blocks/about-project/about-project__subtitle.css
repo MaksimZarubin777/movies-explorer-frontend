@@ -1,0 +1,21 @@
+.about-project__subtitle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24.2px;
+}
+
+@media (max-width:320px) {
+  .about-project__subtitle:nth-of-type(2) {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-project__subtitle {
+    font-size: 18px;
+    line-height: 21.78px;
+  }
+}

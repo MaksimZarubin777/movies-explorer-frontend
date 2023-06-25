@@ -1,0 +1,10 @@
+.search-form__button {
+  background-image: url(../../images/search_button.svg);
+  width: 44px;
+  height: 44px;
+  background-position: center;
+  margin: auto;
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+}

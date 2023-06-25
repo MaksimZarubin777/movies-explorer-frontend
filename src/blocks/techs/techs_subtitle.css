@@ -1,0 +1,27 @@
+.techs__subtitle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 460px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 26px;
+  text-align: center;
+}
+
+@media (max-width:768px) {
+  .techs__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width:320px) {
+  .techs__subtitle {
+    margin-top: 24px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

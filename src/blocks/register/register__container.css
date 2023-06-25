@@ -1,0 +1,18 @@
+.register__container {
+  width: 396px;
+  display: flex; 
+  flex-direction: column;
+}
+
+
+@media (max-width:467px) {
+  .register__container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .register__container{
+    width: 100%;
+  }
+}

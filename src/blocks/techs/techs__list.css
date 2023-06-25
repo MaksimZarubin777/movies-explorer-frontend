@@ -1,0 +1,22 @@
+.techs__list {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+@media (max-width:768px) {
+  .techs__list {
+    margin-top: 83px;
+  }
+}
+
+@media (max-width:320px) {
+  .techs__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,15 @@
+.about-me__portfolio {
+  margin-top: 101px;
+}
+
+@media (max-width:768px) {
+  .about-me__portfolio {
+    margin-top: 90px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me__portfolio {
+    margin-top: 70px;
+  }
+}

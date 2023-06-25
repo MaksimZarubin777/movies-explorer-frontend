@@ -1,0 +1,16 @@
+.about-me {
+  box-sizing: border-box;
+  padding: 110px 70px 125px 70px;
+}
+
+@media (max-width:768px) {
+  .about-me {
+    padding: 90px 50px 90px 50px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me {
+    padding: 70px 14px 70px 14px;
+  }
+}

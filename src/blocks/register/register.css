@@ -1,0 +1,26 @@
+.register {
+  padding: 70px 0px 70px 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+@media (max-width:768px) {
+  .register {
+    padding: 232px 0px 232px 0px;
+  }
+}
+
+@media (max-width:467px) {
+  .register {
+    padding: 232px 30px 232px 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .register {
+    padding: 56px 30px 30px 30px;
+  }
+}

@@ -1,0 +1,28 @@
+.about-me__info_name {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+}
+
+@media (max-width:768px) {
+  .about-me__info_name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width:530px) {
+  .about-me__info_name {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width:320px) {
+  .about-me__info_name{
+    font-size: 30px;
+    line-height: 36.31px;
+  }
+}

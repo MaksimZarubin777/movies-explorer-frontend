@@ -1,0 +1,11 @@
+.promo__img {
+  max-width: 310px;
+  max-height: 304px;
+}
+
+@media (max-width:320px) {
+  .promo__img {
+    max-width: 210px;
+    min-height: 206px;
+  }
+}

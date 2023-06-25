@@ -1,0 +1,12 @@
+.burger-menu__link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.78px;
+}
+
+.burger-menu__link:focus {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

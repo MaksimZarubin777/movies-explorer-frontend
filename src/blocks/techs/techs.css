@@ -1,0 +1,17 @@
+.techs {
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+  padding: 100px 70px 100px 70px;
+}
+
+@media (max-width:768px) {
+  .techs {
+    padding: 90px 50px 90px 50px;
+  }
+}
+
+@media (max-width:320px) {
+  .techs {
+    padding: 70px 18px 70px 18px;
+  }
+}
