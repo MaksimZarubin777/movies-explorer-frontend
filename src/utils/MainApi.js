@@ -106,7 +106,7 @@ class Api {
 }
 
 const MainApi = new Api({
-  baseUrl: 'http://localhost:3003',
+  baseUrl: 'http://api.movexp.nomoredomains.rocks',
 });
 
 export default MainApi;
