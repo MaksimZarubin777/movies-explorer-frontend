@@ -2,3 +2,5 @@
 @import url(../../blocks/form/form__input.css);
 @import url(../../blocks/form/form__input_title.css);
 @import url(../../blocks/form/form__submit-button.css);
+@import url(../../blocks/form/form__error.css);
+@import url(../../blocks/form/form__submit-button_disabled.css);

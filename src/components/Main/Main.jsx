@@ -3,10 +3,10 @@ import AboutProject from '../AboutProject/AboutProject.jsx';
 import Techs from '../Techs/Techs.jsx';
 import AboutMe from '../AboutMe/AboutMe.jsx';
 
-function Main() {
+function Main({ testLogOut }) {
   return (
     <>
-    <Promo />
+    <Promo testLogOut={testLogOut}/>
     <AboutProject />
     <Techs />
     <AboutMe />

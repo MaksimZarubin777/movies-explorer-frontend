@@ -1,0 +1,6 @@
+@import url(../../blocks/popup/popup.css);
+@import url(../../blocks/popup/popup__auth_h3.css);
+@import url(../../blocks/popup/popup__auth_image.css);
+@import url(../../blocks/popup/popup__button-close.css);
+@import url(../../blocks/popup/popup__container_auth.css);
+@import url(../../blocks/popup/popup_opened.css);

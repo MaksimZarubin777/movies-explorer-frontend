@@ -1,11 +1,10 @@
 import Navigation from '../Navigation/Navigation.jsx';
 import './Header.css';
 
-function Header() {
-  const currentPath = window.location.pathname;
+function Header({ isLoggedIn }) {
   return (
-    <header className={currentPath === '/' ? 'header header__loggedOut' : 'header header__loggedIn'}>
-      <Navigation />
+    <header className={isLoggedIn ? 'header header__loggedIn' : 'header header__loggedOut'}>
+      <Navigation isLoggedIn={isLoggedIn}/>
     </header>
   );
 }

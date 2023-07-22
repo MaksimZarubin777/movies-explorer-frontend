@@ -4,8 +4,12 @@
     {
       "files": ["*.js"],
       "rules": {
-        "vue/comment-directive": "off"
+        "vue/comment-directive": "off",
+        "no-underscore-dangle": "off"
       }
     }
-  ]
+  ],
+  "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+  }
 }

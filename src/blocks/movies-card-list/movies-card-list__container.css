@@ -10,13 +10,15 @@
 
 @media (max-width: 768px) {
   .movies-card-list__container {
+    grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
     row-gap: 36px;
     column-gap: 30px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 388px) {
   .movies-card-list__container{
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    row-gap: 20px;
   }
 }
