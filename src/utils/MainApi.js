@@ -106,7 +106,7 @@ class Api {
 }
 
 const MainApi = new Api({
-  baseUrl: 'http://api.movexp.nomoredomains.rocks',
+  baseUrl: 'https://api.movexp.nomoredomains.rocks',
 });
 
 export default MainApi;
