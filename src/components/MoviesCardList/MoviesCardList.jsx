@@ -35,13 +35,16 @@ function MoviesCardList({
 
   // отслеживаем изменения windowWidth и устанавливаем filmAmount
   useEffect(() => {
-    if (windowWidth > 768) {
+    if (windowWidth >= 1280) {
       setFilmAmount(12);
       setGap(4);
-    } else if (windowWidth > 480) {
+    } else if (windowWidth >= 990) {
+      setFilmAmount(12);
+      setGap(3);
+    } else if (windowWidth >= 768) {
       setFilmAmount(8);
       setGap(2);
-    } else if (windowWidth <= 480) {
+    } else if (windowWidth < 768) {
       setFilmAmount(5);
       setGap(2);
     }
