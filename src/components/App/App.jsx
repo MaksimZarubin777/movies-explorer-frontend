@@ -224,8 +224,8 @@ function App() {
       .catch((err) => {
         console.log(err);
         setPopUpIsOpen(true);
-        setisProfileChanged(false);
       });
+    setisProfileChanged(false);
   };
 
   // функция проверки токена
