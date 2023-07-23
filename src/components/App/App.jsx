@@ -152,6 +152,7 @@ function App() {
     filterFilms(films, searchValue);
   }, [films, searchValue]);
 
+  // хук фильтрации фильмов по активации чекбокса
   useEffect(() => {
     if (location.pathname === '/movies') {
       filterFilms(films, searchValue);

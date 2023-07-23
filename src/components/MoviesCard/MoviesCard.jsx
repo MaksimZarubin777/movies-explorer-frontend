@@ -11,6 +11,13 @@ function MoviesCard({
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
+  
+  const handleClick = () => {
+    console.log('film', film);
+    console.log('film.data', film.data);
+    console.log('film.data.trailerLink', film.data.trailerLink);
+    console.log('film.trailerLink', film.trailerLink);
+  };
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
@@ -98,7 +105,7 @@ function MoviesCard({
 
   return (
     <div className='movies-card'>
-        <img src={currentPath === '/saved-movies' ? film.image : BASE_URL + film.image.url} alt='' className='movies-card__img'></img>
+        <img src={currentPath === '/saved-movies' ? film.image : BASE_URL + film.image.url} alt='' className='movies-card__img' onClick={handleClick}></img>
         <h3 className='movies-card__title'>{film.nameRU}</h3>
         {currentPath === '/saved-movies' ? (
           <span className='movies-card__delete' onClick={filmLikeDelete}/>
