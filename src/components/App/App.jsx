@@ -150,7 +150,7 @@ function App() {
   // хук который фильтрует фильмы по поисковому запросу
   useEffect(() => {
     filterFilms(films, searchValue);
-  }, [films, searchValue]);
+  }, [films, isCheckBoxActive, searchValue]);
 
   // функция поиска фильма
   const handleSearch = (e) => {
