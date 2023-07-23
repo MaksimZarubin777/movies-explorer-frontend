@@ -3,11 +3,11 @@
   background-repeat: no-repeat;
   width: 100px;
   height: 30px;
-  margin-top: 62px;
+  margin-top: 621px;
 } 
 
 @media (max-width:320px) {
   .burger-menu__profile{
-    margin-top: 44px;
+    margin-top: 444px;
   }
 }
