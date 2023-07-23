@@ -109,23 +109,16 @@ function App() {
   const filterFilms = (filmsList, searchData) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
-    searchedFilms = searchedFilms.filter((film) =>
-      film.nameRU.toLowerCase().includes(searchData)
-    );
-  
+    searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
+
+    if (isCheckBoxActive) {
+      // Фильтрация по активному состоянию чекбокса и длительности
+      searchedFilms = searchedFilms.filter((film) => film.duration <= 40);
+    }
+
     if (location.pathname === '/movies') {
-      // Фильтрация фильмов на странице "Movies"
-      if (isCheckBoxActive) {
-        // Фильтрация по активному состоянию чекбокса и длительности
-        searchedFilms = searchedFilms.filter((film) => film.duration <= 40);
-      }
       setFilteredFilms(searchedFilms);
     } else {
-      // Фильтрация фильмов на странице "SavedMovies"
-      if (isCheckBoxActive) {
-        // Фильтрация по активному состоянию чекбокса и длительности
-        searchedFilms = searchedFilms.filter((film) => film.duration <= 40);
-      }
       setFilteredLikedMovies(searchedFilms);
       setIsLikedSearchPerformed(true);
     }
@@ -158,6 +151,10 @@ function App() {
   useEffect(() => {
     filterFilms(films, searchValue);
   }, [films, searchValue]);
+
+  useEffect(() => {
+    console.log('ACTIVE');
+  }, [isCheckBoxActive]);
 
   // функция поиска фильма
   const handleSearch = (e) => {
