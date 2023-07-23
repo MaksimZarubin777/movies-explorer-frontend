@@ -12,13 +12,6 @@ function SearchForm({
   const [searchValue, setSearchValue] = useState('');
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
 
-  // устанавливем статус чекбокса
-  const handleCheckBox = (e) => {
-    setIsCheckBoxActive(e.target.checked);
-    setCheckBoxStatus(e.target.checked);
-    handleSubmitSearch();
-  };
-
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -33,6 +26,14 @@ function SearchForm({
       localStorage.setItem('savedSearchValue', searchValue.toLowerCase());
       handleSubmitSaved(searchValue.toLowerCase());
     }
+  };
+
+  // устанавливем статус чекбокса
+  const handleCheckBox = (e) => {
+    setIsCheckBoxActive(e.target.checked);
+    setCheckBoxStatus(e.target.checked);
+    handleSubmitSearch();
+    console.log('da');
   };
 
   // хук получения данных с локал сторедж
