@@ -11,9 +11,11 @@ function MoviesCard({
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
-  
+
   const handleClick = () => {
-    console.log('film.trailerLink', film.trailerLink);
+    if (film.trailerLink) {
+      window.open(film.trailerLink, '_blank'); // Открываем ссылку в новом окне
+    }
   };
 
   // функция проверки лайкнут ли уже фильм
