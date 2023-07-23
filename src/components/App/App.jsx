@@ -156,7 +156,7 @@ function App() {
     if (location.pathname === '/movies') {
       filterFilms(films, searchValue);
     } else {
-      filterFilms(filteredLikedMovies, searchValue);
+      filterFilms(likedMovies, searchValue);
     };
   }, [isCheckBoxActive]);
 
