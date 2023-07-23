@@ -153,7 +153,7 @@ function App() {
   }, [films, searchValue]);
 
   useEffect(() => {
-    console.log('ACTIVE');
+    filterFilms(films, searchValue);
   }, [isCheckBoxActive]);
 
   // функция поиска фильма
