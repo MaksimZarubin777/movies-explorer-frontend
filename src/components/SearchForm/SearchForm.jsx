@@ -32,7 +32,7 @@ function SearchForm({
   const handleCheckBox = (e) => {
     setIsCheckBoxActive(e.target.checked);
     setCheckBoxStatus(e.target.checked);
-    handleSubmitSearch();
+    handleSubmitSearch(e);
     console.log('da');
   };
 
