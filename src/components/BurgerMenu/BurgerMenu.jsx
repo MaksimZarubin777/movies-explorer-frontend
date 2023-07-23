@@ -14,8 +14,6 @@ function BurgerMenu() {
           <Link to='/' className='burger-menu__link'>Главная</Link>
           <Link to='/movies' className='burger-menu__link'>Фильмы</Link>
           <Link to='/saved-movies' className='burger-menu__link'>Сохраненные фильмы</Link>
-        </div>
-        <div className='burger-menu__profile' onClick={toggleBurgerMenu}>
           <Link to='/profile' className='burger-menu__profile' />
         </div>
       </div>
