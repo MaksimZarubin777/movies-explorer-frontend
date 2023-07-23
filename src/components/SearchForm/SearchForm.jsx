@@ -16,6 +16,12 @@ function SearchForm({
     setSearchValue(e.target.value);
   };
 
+  // устанавливем статус чекбокса
+  const handleCheckBox = (e) => {
+    setIsCheckBoxActive(e.target.checked);
+    setCheckBoxStatus(e.target.checked);
+  };
+
   const handleSubmitSearch = (e) => {
     e.preventDefault();
     if (location.pathname === '/movies') {
@@ -26,14 +32,6 @@ function SearchForm({
       localStorage.setItem('savedSearchValue', searchValue.toLowerCase());
       handleSubmitSaved(searchValue.toLowerCase());
     }
-  };
-
-  // устанавливем статус чекбокса
-  const handleCheckBox = (e) => {
-    setIsCheckBoxActive(e.target.checked);
-    setCheckBoxStatus(e.target.checked);
-    handleSubmitSearch(e);
-    console.log('da');
   };
 
   // хук получения данных с локал сторедж
