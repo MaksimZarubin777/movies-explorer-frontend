@@ -35,6 +35,8 @@ function Profile({ handleUpdateUser, logOut }) {
   const handleSubmit = (values) => {
     handleUpdateUser(values);
     setEdit(true);
+    const formik = useFormikContext();
+    formik.resetForm();
   };
 
   // настройки кнопки сабмита
