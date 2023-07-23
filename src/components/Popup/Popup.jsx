@@ -39,7 +39,7 @@ function Popup({
   });
 
   let popupContent;
-  if (loggedIn && !isSearched) {
+  if (loggedIn && !isSearched && !isProfileChanged) {
     popupContent = (
       <>
         <img src={authOk} className='popup__auth_image' alt='Success'></img>
