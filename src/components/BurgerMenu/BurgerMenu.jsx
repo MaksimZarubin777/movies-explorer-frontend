@@ -10,7 +10,8 @@ function BurgerMenu() {
   const handleProfileClick = () => {
     toggleBurgerMenu();
     navigate('/profile', { relace: true });
-  }
+  };
+
   return (
     <div className={isBurgerMenuOpen ? 'burger-menu' : ''}>
       <div className='burger-menu__container'>

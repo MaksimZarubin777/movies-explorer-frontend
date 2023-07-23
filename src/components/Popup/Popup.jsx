@@ -3,7 +3,12 @@ import './Popup.css';
 import authOk from '../../images/auth_v.svg';
 import authBad from '../../images/auth_x.svg';
 
-function Popup({ onClose, loggedIn, isOpen }) {
+function Popup({
+  onClose,
+  loggedIn,
+  isOpen,
+  isSearched,
+}) {
   // закрытие попапа через эскейп
   useEffect(() => {
     function handleEscapeClose(event) {
@@ -31,22 +36,37 @@ function Popup({ onClose, loggedIn, isOpen }) {
       document.removeEventListener('click', handleOverLayClickClose);
     };
   });
+  console.log(isSearched);
+
+  let popupContent;
+  if (loggedIn && !isSearched) {
+    popupContent = (
+      <>
+        <img src={authOk} className='popup__auth_image' alt='Success'></img>
+        <h3 className="popup__auth_h3">Все прошло успешно!</h3>
+      </>
+    );
+  } else if (loggedIn && isSearched) {
+    popupContent = (
+      <>
+        <img src={authBad} className='popup__auth_image' alt='Error'></img>
+        <h3 className="popup__auth_h3">Нечего искать - введите что-нибудь в поиск и попробуйте снова</h3>
+      </>
+    );
+  } else {
+    popupContent = (
+      <>
+        <img src={authBad} className='popup__auth_image' alt='Error'></img>
+        <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
+      </>
+    );
+  }
 
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="popup-auth">
       <div className="popup__container_auth">
         <button className="popup__button-close" id="popup-auth-close" type="button" onClick={onClose}></button>
-        {loggedIn ? (
-          <>
-          <img src={authOk} className='popup__auth_image'></img>
-          <h3 className="popup__auth_h3">Все прошло успешно!</h3>
-          </>
-        ) : (
-          <>
-          <img src={authBad} className='popup__auth_image'></img>
-          <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
-          </>
-        )}
+        {popupContent}
       </div>
     </div>
   );

@@ -42,6 +42,7 @@ function App() {
   const [isLikedSearchPerformed, setIsLikedSearchPerformed] = useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -154,7 +155,9 @@ function App() {
   const handleSearch = (e) => {
     setIsLoading(true);
     if (e.target.elements.film.value === '') {
-      alert('Нужно ввести ключевое слово');
+      setPopUpIsOpen(true);
+      setIsClicked(true);
+      setIsLoading(false);
     } else {
       MoviesApi.getMovies()
         .then((res) => {
@@ -240,7 +243,12 @@ function App() {
     <div className="page">
       <BurgerMenuProvider>
       <CurrentUserContext.Provider value={currentUser}>
-      <Popup isOpen={popUpIsOpen} loggedIn={loggedIn} onClose={closePopUp}/>
+      <Popup
+        isOpen={popUpIsOpen}
+        loggedIn={loggedIn}
+        onClose={closePopUp}
+        isSearched={isClicked}
+      />
       <Routes>
 
         <Route path="/" element={
