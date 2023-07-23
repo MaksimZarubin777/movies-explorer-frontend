@@ -43,6 +43,7 @@ function App() {
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [isProfileChanged, setisProfileChanged] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -217,8 +218,14 @@ function App() {
     MainApi.updateUserInfo(data)
       .then((newUserData) => {
         setCurrentUser(newUserData);
+        setPopUpIsOpen(true);
+        setisProfileChanged(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setPopUpIsOpen(true);
+        setisProfileChanged(false);
+      });
   };
 
   // функция проверки токена
@@ -248,6 +255,7 @@ function App() {
         loggedIn={loggedIn}
         onClose={closePopUp}
         isSearched={isClicked}
+        isProfileChanged={isProfileChanged}
       />
       <Routes>
 

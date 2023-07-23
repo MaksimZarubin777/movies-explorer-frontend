@@ -8,6 +8,7 @@ function Popup({
   loggedIn,
   isOpen,
   isSearched,
+  isProfileChanged,
 }) {
   // закрытие попапа через эскейп
   useEffect(() => {
@@ -36,7 +37,6 @@ function Popup({
       document.removeEventListener('click', handleOverLayClickClose);
     };
   });
-  console.log(isSearched);
 
   let popupContent;
   if (loggedIn && !isSearched) {
@@ -51,6 +51,20 @@ function Popup({
       <>
         <img src={authBad} className='popup__auth_image' alt='Error'></img>
         <h3 className="popup__auth_h3">Нечего искать - введите что-нибудь в поиск и попробуйте снова</h3>
+      </>
+    );
+  } else if (loggedIn && isProfileChanged) {
+    popupContent = (
+      <>
+        <img src={authOk} className='popup__auth_image' alt='Error'></img>
+        <h3 className="popup__auth_h3">Данные успешно обовлены!</h3>
+      </>
+    );
+  } else if (loggedIn && !isProfileChanged) {
+    popupContent = (
+      <>
+        <img src={authBad} className='popup__auth_image' alt='Error'></img>
+        <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
       </>
     );
   } else {
