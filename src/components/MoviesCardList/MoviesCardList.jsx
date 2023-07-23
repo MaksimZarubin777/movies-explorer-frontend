@@ -37,7 +37,7 @@ function MoviesCardList({
   useEffect(() => {
     if (windowWidth > 768) {
       setFilmAmount(12);
-      setGap(3);
+      setGap(4);
     } else if (windowWidth > 480) {
       setFilmAmount(8);
       setGap(2);
