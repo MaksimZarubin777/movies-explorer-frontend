@@ -65,7 +65,6 @@ function App() {
   useEffect(() => {
     getContent();
   }, []);
-  console.log(loggedIn);
 
   // функция получения фильмов с лайком
   const getLikedMovies = () => {
@@ -74,7 +73,8 @@ function App() {
         setLikedMovies(data.data);
         localStorage.setItem('likedMovies', JSON.stringify(data));
         setisLoaded(true);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // функция получения данных пользователя
@@ -82,7 +82,8 @@ function App() {
     MainApi.getUser()
       .then((user) => {
         setCurrentUser(user);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // хук вызова функция полчения данных если пользователь залогинен
@@ -204,7 +205,8 @@ function App() {
         localStorage.clear();
         setLoggedIn(false);
         navigate('/', { replace: true });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // функция обновления пользователя
