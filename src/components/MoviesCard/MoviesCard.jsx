@@ -13,9 +13,6 @@ function MoviesCard({
   const [isLikeClicked, setIsLikeClicked] = useState(false);
   
   const handleClick = () => {
-    console.log('film', film);
-    console.log('film.data', film.data);
-    console.log('film.data.trailerLink', film.data.trailerLink);
     console.log('film.trailerLink', film.trailerLink);
   };
 
