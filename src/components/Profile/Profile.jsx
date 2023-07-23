@@ -59,7 +59,7 @@ function Profile({ handleUpdateUser, logOut }) {
       <button
         type="submit"
         className={isValid && formik.dirty ? 'profile__button' : 'profile__button profile__button_disabled'}
-        disabled={!isValid && formik.dirty}
+        disabled={!isValid && !formik.dirty}
       >
         Сохранить
       </button>
