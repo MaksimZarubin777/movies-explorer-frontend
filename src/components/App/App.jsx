@@ -153,7 +153,11 @@ function App() {
   }, [films, searchValue]);
 
   useEffect(() => {
-    filterFilms(films, searchValue);
+    if (location.pathname === '/movies') {
+      filterFilms(films, searchValue);
+    } else {
+      console.log('else');
+    };
   }, [isCheckBoxActive]);
 
   // функция поиска фильма
