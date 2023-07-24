@@ -241,7 +241,7 @@ function App() {
   const checkIsLoggedIn = () => {
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      navigate('/movies', { replace: true });
+      // navigate('/movies', { replace: true });
       setLoggedIn(true);
     }
   };
