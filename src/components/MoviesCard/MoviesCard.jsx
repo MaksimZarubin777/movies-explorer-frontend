@@ -91,7 +91,7 @@ function MoviesCard({
         nameEN,
       })
         .then((data) => {
-          setLikedMoviesData([...likedMoviesData, data]);
+          setLikedMoviesData([...likedMoviesData, data.data]);
           setIsLikeClicked(true);
         })
         .catch((err) => {
