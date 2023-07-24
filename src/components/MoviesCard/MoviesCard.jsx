@@ -22,8 +22,11 @@ function MoviesCard({
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
-    const localMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
-    const isFilmLiked = (likedMoviesData ? likedMoviesData : localMovies) && (likedMoviesData ? likedMoviesData : localMovies)
+    const localSavedFilms = JSON.parse(localStorage.getItem('localSavedFilms'));
+    if (localSavedFilms) {
+      setLikedMoviesData([...likedMoviesData, localSavedFilms]);
+    };
+    const isFilmLiked = likedMoviesData && likedMoviesData
       .some((likedFilm) => likedFilm.movieId === film.id);
     if (isFilmLiked) {
       setIsLikeClicked(true);
