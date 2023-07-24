@@ -52,6 +52,7 @@ function App() {
   const searchValue = localStorage.getItem('searchValue');
   const navigate = useNavigate();
   const location = useLocation();
+  const currentPath = window.location.pathname;
 
   // этой функцией проверяет достпен ли еще jwt и если нет, удаляем локалсторедж и loggedIn
   const getContent = () => {

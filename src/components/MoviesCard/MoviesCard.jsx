@@ -10,7 +10,7 @@ function MoviesCard({
   setLikedMovies,
   isLikeClicked,
 }) {
-  const currentPath = window.location.pathname;
+  // const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
   // const [isLikeClicked, setIsLikeClicked] = useState(false);
 
