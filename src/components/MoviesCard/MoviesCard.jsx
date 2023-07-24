@@ -22,7 +22,8 @@ function MoviesCard({
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
-    const isFilmLiked = likedMoviesData && likedMoviesData
+    const localMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
+    const isFilmLiked = localMovies && localMovies
       .some((likedFilm) => likedFilm.movieId === film.id);
     if (isFilmLiked) {
       setIsLikeClicked(true);
@@ -36,7 +37,7 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [likedMoviesData]);
+  }, [likedMoviesData, currentPath]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
@@ -93,6 +94,7 @@ function MoviesCard({
       })
         .then((data) => {
           setLikedMoviesData([...likedMoviesData, data.data]);
+          localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData));
           setIsLikeClicked(true);
         })
         .catch((err) => {
@@ -103,6 +105,7 @@ function MoviesCard({
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
           setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
+          localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData));
           setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
