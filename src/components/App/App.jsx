@@ -21,7 +21,6 @@ import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import Popup from '../Popup/Popup.jsx';
-import Preloader from '../Preloader/Preloader';
 
 function App() {
   // стейт записи логина
@@ -46,7 +45,6 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -97,7 +95,6 @@ function App() {
     if (loggedIn) {
       getUserInformation();
       getLikedMovies();
-      setIsLikedMoviesLoaded(true);
     }
   }, [loggedIn]);
 
@@ -306,20 +303,15 @@ function App() {
         <Route path="/saved-movies" element={
           <>
           <Header isLoggedIn={loggedIn}/>
-          {isLikedMoviesLoaded ? (
-            <ProtectedRouteElement 
-              element={SavedMovies}
-              isLoggedIn={loggedIn}
-              handleSearch={handleSearch}
-              likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
-              isLoaded={isLoaded}
-              onDelete={handleMovieDelete}
-              handleSubmitSaved={handleSubmitSaved}
-              setIsCheckBoxActive={setIsCheckBoxActive}
-            />
-          ) : (
-            <p>Loading...</p>
-          )}
+          {<ProtectedRouteElement element={SavedMovies}
+          isLoggedIn={loggedIn}
+          handleSearch={handleSearch}
+          likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
+          isLoaded={isLoaded}
+          onDelete={handleMovieDelete}
+          handleSubmitSaved={handleSubmitSaved}
+          setIsCheckBoxActive={setIsCheckBoxActive}
+            />}
           <Footer />
           </>
         }/>
