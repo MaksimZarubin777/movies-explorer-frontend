@@ -184,8 +184,9 @@ function App() {
           setIsLoading(false);
         });
     } else {
-      const films = localStorage.getItem('films');
-      setFilms(JSON.parse(films));
+      const films = JSON.parse(localStorage.getItem('films'));
+      setFilms(films);
+      setIsLoading(false);
     }
   };
 
