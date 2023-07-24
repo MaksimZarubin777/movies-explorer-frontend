@@ -92,6 +92,7 @@ function MoviesCard({
       })
         .then((data) => {
           setLikedMoviesData([...likedMovies, data]);
+          setIsLikeClicked(true);
         })
         .catch((err) => {
           console.log(err);
@@ -100,6 +101,7 @@ function MoviesCard({
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
           setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
+          setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
     }
