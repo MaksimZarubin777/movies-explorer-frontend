@@ -52,9 +52,9 @@ function MoviesCard({
     const remainingMinutes = minutes % 60;
 
     if (hours === 0) {
-      return `${remainingMinutes}мин`;
+      return `${remainingMinutes} мин`;
     }
-    return `${hours}ч ${remainingMinutes}мин`;
+    return `${hours}ч ${remainingMinutes} мин`;
   };
 
   // функция лайка/дизлайка
