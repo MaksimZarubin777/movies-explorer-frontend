@@ -55,10 +55,12 @@ function App() {
   const getContent = () => {
     MainApi.getUser()
       .then((user) => {
+        console.log('при получении контента все ок');
         setCurrentUser(user);
         setLoggedIn(true);
       })
       .catch(() => {
+        console.log('при получении контента все НЕ ок');
         setLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
         navigate('/', { replace: true });
@@ -159,7 +161,7 @@ function App() {
       filterFilms(films, searchValue);
     } else {
       filterFilms(likedMovies, searchValue);
-    };
+    }
   }, [isCheckBoxActive]);
 
   // функция поиска фильма
@@ -222,7 +224,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-
+  console.log(isLoggedIn);
   // функция обновления пользователя
   const handleUpdateUser = (data) => {
     MainApi.updateUserInfo(data)
