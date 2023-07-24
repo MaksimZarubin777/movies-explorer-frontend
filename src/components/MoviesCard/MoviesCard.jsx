@@ -23,11 +23,11 @@ function MoviesCard({
   const checkIsFilmLiked = () => {
     const isFilmLiked = likedMovies && likedMovies
       .some((likedFilm) => likedFilm.movieId === film.id);
-    // if (isFilmLiked) {
-    //   setIsLikeClicked(true);
-    // } else {
-    //   setIsLikeClicked(false);
-    // }
+    if (isFilmLiked) {
+      setIsLikeClicked(true);
+    } else {
+      setIsLikeClicked(false);
+    }
   };
 
   // хук вызова функции проверки лайкнут ли уже фильм
