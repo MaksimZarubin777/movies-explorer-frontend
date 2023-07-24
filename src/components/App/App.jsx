@@ -240,9 +240,10 @@ function App() {
 
   // функция проверки токена
   const checkIsLoggedIn = () => {
+    const location = useLocation();
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      navigate('/movies', { replace: true });
+      navigate(location.pathname, { replace: true });
       setLoggedIn(true);
     }
   };
