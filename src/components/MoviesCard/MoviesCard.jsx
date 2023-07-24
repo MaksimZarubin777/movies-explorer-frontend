@@ -95,7 +95,6 @@ function MoviesCard({
         .then((data) => {
           setLikedMoviesData([...likedMoviesData, data.data]);
           localStorage.setItem('localSavedMovies', JSON.stringify([...likedMoviesData, data.data]));
-          setIsLikeClicked(true);
         })
         .catch((err) => {
           console.log(err);
@@ -106,7 +105,6 @@ function MoviesCard({
         .then(() => {
           setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
           localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData.filter((movie) => movie.movieId !== id)));
-          setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
     }
