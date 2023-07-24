@@ -318,7 +318,9 @@ function App() {
               setIsCheckBoxActive={setIsCheckBoxActive}
             />
           ) : (
+            <>
             <Preloader />
+            </>
           )}
           <Footer />
           </>
