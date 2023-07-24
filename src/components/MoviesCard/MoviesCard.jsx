@@ -25,6 +25,7 @@ function MoviesCard({
     const localSavedFilms = JSON.parse(localStorage.getItem('localSavedFilms'));
     if (localSavedFilms) {
       setLikedMoviesData([...likedMoviesData, localSavedFilms]);
+      console.log(likedMoviesData);
     };
     const isFilmLiked = likedMoviesData && likedMoviesData
       .some((likedFilm) => likedFilm.movieId === film.id);
