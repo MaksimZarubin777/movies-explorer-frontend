@@ -245,6 +245,7 @@ function App() {
 
   // функция обновления пользователя
   const handleUpdateUser = (data) => {
+    setIsSubmitting(true);
     MainApi.updateUserInfo(data)
       .then((newUserData) => {
         setCurrentUser(newUserData);
@@ -256,6 +257,7 @@ function App() {
         setPopUpIsOpen(true);
       });
     setisProfileChanged(false);
+    setIsSubmitting(false);
   };
 
   // функция проверки токена
@@ -344,6 +346,7 @@ function App() {
             isLoggedIn={loggedIn}
             handleUpdateUser={handleUpdateUser}
             logOut={handleLogout}
+            isSubmitting={isSubmitting}
           />
           </>
         }/>
