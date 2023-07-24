@@ -12,6 +12,7 @@ function MoviesCard({
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [likedMoviesData, setLikedMoviesData] = useState(likedMovies);
 
   const handleClick = () => {
     if (film.trailerLink) {
@@ -21,7 +22,7 @@ function MoviesCard({
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
-    const isFilmLiked = likedMovies && likedMovies
+    const isFilmLiked = likedMoviesData && likedMoviesData
       .some((likedFilm) => likedFilm.movieId === film.id);
     if (isFilmLiked) {
       setIsLikeClicked(true);
@@ -90,7 +91,7 @@ function MoviesCard({
         nameEN,
       })
         .then((data) => {
-          setLikedMovies([...likedMovies, data]);
+          setLikedMoviesData([...likedMovies, data]);
           setIsLikeClicked(true);
         })
         .catch((err) => {
@@ -99,7 +100,7 @@ function MoviesCard({
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          setLikedMovies(likedMovies.filter((movie) => movie.movieId !== id));
+          setLikedMoviesData(likedMovies.filter((movie) => movie.movieId !== id));
           setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
