@@ -16,7 +16,7 @@ function MoviesCard({
 
   const handleClick = () => {
     if (film.trailerLink) {
-      window.open(film.trailerLink, '_blank'); // Открываем ссылку в новом окне
+      window.open(film.trailerLink, '_blank'); 
     }
   };
 
@@ -92,7 +92,6 @@ function MoviesCard({
       })
         .then((data) => {
           setLikedMoviesData([...likedMovies, data]);
-          setIsLikeClicked(true);
         })
         .catch((err) => {
           console.log(err);
@@ -101,7 +100,6 @@ function MoviesCard({
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
           setLikedMoviesData(likedMovies.filter((movie) => movie.movieId !== id));
-          setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
     }
