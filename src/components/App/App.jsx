@@ -170,10 +170,11 @@ function App() {
       setPopUpIsOpen(true);
       setIsClicked(true);
       setIsLoading(false);
-    } else {
+    } else if (!isSearchPerformed) {
       MoviesApi.getMovies()
         .then((res) => {
           setFilms(res);
+          localStorage.setItem('films', JSON.stringify(res));
           setIsSearchPerformed(true);
         })
         .catch(() => {
@@ -182,6 +183,9 @@ function App() {
         .finally(() => {
           setIsLoading(false);
         });
+    } else {
+      const films = localStorage.getItem('films');
+      setFilms(JSON.parse(films));
     }
   };
 
