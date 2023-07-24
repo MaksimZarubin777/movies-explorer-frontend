@@ -62,7 +62,7 @@ function MoviesCard({
     }
     return `${hours}ч ${remainingMinutes}мин`;
   };
-  console.log(likedMoviesData);
+  
   // функция лайка/дизлайка
   const handleIsLiked = () => {
     setIsLikeClicked(!isLikeClicked);
