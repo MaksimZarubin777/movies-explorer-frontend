@@ -13,7 +13,7 @@ function MoviesCard({
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
   const [likedMoviesData, setLikedMoviesData] = useState(likedMovies);
-  concole.log('start', isLikeClicked);
+  console.log('start', isLikeClicked);
   const handleClick = () => {
     if (film.trailerLink) {
       window.open(film.trailerLink, '_blank'); 
