@@ -14,8 +14,8 @@ function Navigation({ isLoggedIn }) {
         <>
         <div className='navigation__container navigation__container_loggedIn'>
           <div className='navigation__films'>
-            <NavLink to='/movies' className='navigation__text'>Фильмы</NavLink>
-            <NavLink to='/saved-movies' className='navigation__text'>Сохраненные фильмы</NavLink>
+            <NavLink to='/movies' className='navigation__text' activeClassName='navigation__text_active'>Фильмы</NavLink>
+            <NavLink to='/saved-movies' className='navigation__text' activeClassName='navigation__text_active'>Сохраненные фильмы</NavLink>
           </div>
             <Link to='/profile' className='navigation__profile'/>
         </div>
