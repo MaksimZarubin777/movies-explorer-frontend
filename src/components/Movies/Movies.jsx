@@ -15,7 +15,6 @@ function Movies({
   isLoaded,
   savedMovies,
   isCheckBoxActive,
-  isLikeClicked,
 }) {
   return (
     <>

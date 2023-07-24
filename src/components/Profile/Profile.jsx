@@ -81,7 +81,7 @@ function Profile({ handleUpdateUser, logOut }) {
   return (
     <div className="profile">
       {isDataLoaded ? (
-      <>  
+      <>
       <h2 className="profile__title">Привет, {currentUser.data.name}!</h2>
       <Formik
         initialValues={initialValues}

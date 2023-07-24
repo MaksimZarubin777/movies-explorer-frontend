@@ -184,16 +184,16 @@ function App() {
           setIsLoading(false);
         });
     } else {
-      const films = JSON.parse(localStorage.getItem('films'));
-      setFilms(films);
+      const localFilms = JSON.parse(localStorage.getItem('films'));
+      setFilms(localFilms);
       setIsLoading(false);
     }
   };
 
   // хук проверки есть ли полный список фильмов в локалсторедж
   useEffect(() => {
-    const films = JSON.parse(localStorage.getItem('films'));
-    if (films) {
+    const localedFilms = JSON.parse(localStorage.getItem('films'));
+    if (localedFilms) {
       setIsSearchPerformed(true);
     }
   }, []);

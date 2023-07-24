@@ -10,7 +10,6 @@ function MoviesCardList({
   likedMovies,
   handleMovieDelete,
   setLikedMovies,
-  isLikeClicked,
 }) {
   // установаливаем windowWidth изначально равным размеру окна
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
