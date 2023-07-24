@@ -13,7 +13,7 @@ function MoviesCard({
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
   const [likedMoviesData, setLikedMoviesData] = useState(likedMovies);
-  console.log('start', isLikeClicked);
+
   const handleClick = () => {
     if (film.trailerLink) {
       window.open(film.trailerLink, '_blank'); 
@@ -24,17 +24,15 @@ function MoviesCard({
   const checkIsFilmLiked = () => {
     const isFilmLiked = likedMoviesData && likedMoviesData
       .some((likedFilm) => likedFilm.movieId === film.id);
-      console.log('isfilmliked', isFilmLiked);
     if (isFilmLiked) {
       setIsLikeClicked(true);
     } else {
       setIsLikeClicked(false);
     }
   };
-  
+
   // хук вызова функции проверки лайкнут ли уже фильм
   useEffect(() => {
-    console.log('useeff', isLikeClicked);
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
@@ -59,7 +57,7 @@ function MoviesCard({
     }
     return `${hours}ч ${remainingMinutes}мин`;
   };
-
+  console.log(likedMoviesData);
   // функция лайка/дизлайка
   const handleIsLiked = () => {
     setIsLikeClicked(!isLikeClicked);
@@ -77,10 +75,7 @@ function MoviesCard({
       nameEN,
     } = film;
     const filmToLike = likedMoviesData && likedMoviesData
-      .find((movie) => {
-        movie.movieId === id;
-        console.log(movie.movieId, id);
-      });
+      .find((movie) => movie.movieId === id);
     if (!filmToLike) {
       MainApi.saveMovie({
         country,
