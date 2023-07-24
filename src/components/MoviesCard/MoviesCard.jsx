@@ -94,7 +94,7 @@ function MoviesCard({
       })
         .then((data) => {
           setLikedMoviesData([...likedMoviesData, data.data]);
-          localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData));
+          localStorage.setItem('localSavedMovies', JSON.stringify([...likedMoviesData, data.data]));
           setIsLikeClicked(true);
         })
         .catch((err) => {
@@ -105,12 +105,13 @@ function MoviesCard({
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
           setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
-          localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData));
+          localStorage.setItem('localSavedMovies', JSON.stringify(likedMoviesData.filter((movie) => movie.movieId !== id)));
           setIsLikeClicked(false);
         })
         .catch((err) => console.log(err));
     }
   };
+  
 
   return (
     <div className='movies-card'>
