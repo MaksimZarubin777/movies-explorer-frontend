@@ -118,7 +118,6 @@ function MoviesCard({
 
 export default MoviesCard;
 
-// import { useEffect, useState } from 'react';
 // import './MoviesCard.css';
 // import MainApi from '../../utils/MainApi';
 
