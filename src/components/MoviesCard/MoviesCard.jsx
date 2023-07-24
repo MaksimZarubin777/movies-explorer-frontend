@@ -36,7 +36,7 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [likedMovies, isLikeClicked]);
+  }, [likedMoviesData]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
@@ -74,7 +74,7 @@ function MoviesCard({
       nameRU,
       nameEN,
     } = film;
-    const filmToLike = likedMovies && likedMovies
+    const filmToLike = likedMoviesData && likedMoviesData
       .find((movie) => movie.movieId === id);
     if (!filmToLike) {
       MainApi.saveMovie({
@@ -99,7 +99,7 @@ function MoviesCard({
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          setLikedMoviesData(likedMovies.filter((movie) => movie.movieId !== id));
+          setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
         })
         .catch((err) => console.log(err));
     }
