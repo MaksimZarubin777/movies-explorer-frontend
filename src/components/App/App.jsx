@@ -44,6 +44,7 @@ function App() {
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isProfileChanged, setisProfileChanged] = useState(false);
+  const [isTokenChecked, setIsTokenChecked] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -245,6 +246,7 @@ function App() {
       // navigate(location.pathname, { replace: true });
       setLoggedIn(true);
     }
+    setIsTokenChecked(true);
   };
 
   // // проверка токена
@@ -267,7 +269,8 @@ function App() {
         isSearched={isClicked}
         isProfileChanged={isProfileChanged}
       />
-      <Routes>
+      {isTokenChecked && (
+        <Routes>
 
         <Route path="/" element={
           <>
@@ -328,7 +331,8 @@ function App() {
         <Route path="/signin" element={<Login onSubmit={handleLogin} />}/>
         <Route path="/signup" element={<Register onSubmit={handleRegister}/>}/>
         <Route path="*" element={<PageNotFound />} />
-      </Routes>
+        </Routes>
+      )}
       </CurrentUserContext.Provider>
       </BurgerMenuProvider>
     </div>
