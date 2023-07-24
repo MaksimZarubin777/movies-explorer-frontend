@@ -190,6 +190,7 @@ function App() {
     }
   };
 
+  // хук проверки есть ли полный список фильмов в локалсторедж
   useEffect(() => {
     const films = JSON.parse(localStorage.getItem('films'));
     if (films) {
@@ -304,6 +305,7 @@ function App() {
             isError={isError}
             setIsCheckBoxActive={setIsCheckBoxActive}
             likedMovies={likedMovies}
+            setLikedMovies={setLikedMovies}
             isLoaded={isLoaded}
             savedMovies={getLikedMovies}
             isCheckBoxActive={isCheckBoxActive}

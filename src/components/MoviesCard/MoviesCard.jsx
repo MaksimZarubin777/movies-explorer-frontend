@@ -7,6 +7,7 @@ function MoviesCard({
   savedMovies,
   likedMovies,
   handleMovieDelete,
+  setLikedMovies,
 }) {
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
@@ -89,14 +90,14 @@ function MoviesCard({
         nameRU,
         nameEN,
       })
-        .then(() => savedMovies())
+        .then((data) => setLikedMovies([...likedMovies, data]))
         .catch((err) => {
           console.log(err);
         });
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          savedMovies();
+          setLikedMovies(likedMovies.filter((movie) => movie.movieId !== id));
         })
         .catch((err) => console.log(err));
     }

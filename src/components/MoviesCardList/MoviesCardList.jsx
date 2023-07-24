@@ -9,6 +9,7 @@ function MoviesCardList({
   savedMovies,
   likedMovies,
   handleMovieDelete,
+  setLikedMovies,
 }) {
   // установаливаем windowWidth изначально равным размеру окна
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -82,6 +83,7 @@ function MoviesCardList({
             savedMovies={savedMovies}
             likedMovies={likedMovies}
             handleMovieDelete={handleMovieDelete}
+            setLikedMovies={setLikedMovies}
           />)
         ) : (
           isSearchPerformed && <p>Ничего не найдено</p>
