@@ -77,6 +77,7 @@ function MoviesCard({
     const filmToLike = likedMoviesData && likedMoviesData
       .find((movie) => movie.movieId === id);
     if (!filmToLike) {
+      console.log('bylo');
       MainApi.saveMovie({
         country,
         director,
@@ -98,6 +99,7 @@ function MoviesCard({
           console.log(err);
         });
     } else if (filmToLike) {
+      console.log('nebylo');
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
           setLikedMoviesData(likedMoviesData.filter((movie) => movie.movieId !== id));
