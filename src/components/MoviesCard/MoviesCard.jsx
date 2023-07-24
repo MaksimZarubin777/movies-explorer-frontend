@@ -12,7 +12,7 @@ function MoviesCard({
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
-  const [likedMoviesData, setLikedMoviesData] = useState(likedMovies);
+  const [likedMoviesData, setLikedMoviesData] = useState(JSON.parse(localStorage.getItem('localSavedMovies')));
 
   const handleClick = () => {
     if (film.trailerLink) {
@@ -23,11 +23,7 @@ function MoviesCard({
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
     const localSavedFilms = JSON.parse(localStorage.getItem('localSavedMovies'));
-    if (localSavedFilms) {
-      setLikedMoviesData([localSavedFilms]);
-      console.log(likedMoviesData);
-    };
-    const isFilmLiked = likedMoviesData && likedMoviesData
+    const isFilmLiked = localSavedFilms && localSavedFilms
       .some((likedFilm) => likedFilm.movieId === film.id);
     if (isFilmLiked) {
       setIsLikeClicked(true);
@@ -41,7 +37,7 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [currentPath]);
+  }, [likedMoviesData]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
@@ -62,7 +58,7 @@ function MoviesCard({
     }
     return `${hours}ч ${remainingMinutes}мин`;
   };
-  
+
   // функция лайка/дизлайка
   const handleIsLiked = () => {
     setIsLikeClicked(!isLikeClicked);
