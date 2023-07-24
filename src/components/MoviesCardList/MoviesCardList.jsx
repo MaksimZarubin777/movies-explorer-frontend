@@ -66,10 +66,6 @@ function MoviesCardList({
     setFilmsRemain(films && films.length > 0 ? films.length - newFilmAmount : 0);
   };
 
-  useEffect(() => {
-    localStorage.setItem('localSavedMovies', JSON.stringify(likedMovies));
-  }, [])
-
   return (
     <section className="movies-card-list">
       <div className='movies-card-list__container'>
