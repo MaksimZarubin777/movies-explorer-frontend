@@ -11,7 +11,7 @@ import CurrentUserContext from '../../context/CurrentUserContext.jsx';
 import './Profile.css';
 import Preloader from '../Preloader/Preloader.jsx';
 
-function Profile({ handleUpdateUser, logOut }) {
+function Profile({ handleUpdateUser, logOut, isSubmitting }) {
   const currentUser = useContext(CurrentUserContext);
   const [edit, setEdit] = useState(true);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -71,7 +71,7 @@ function Profile({ handleUpdateUser, logOut }) {
       <button
         type="submit"
         className={isValid && formik.dirty ? 'profile__button' : 'profile__button profile__button_disabled'}
-        disabled={!formik.dirty}
+        disabled={!formik.dirty || isSubmitting}
       >
         Сохранить
       </button>
