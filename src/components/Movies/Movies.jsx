@@ -33,7 +33,6 @@ function Movies({
           savedMovies={savedMovies}
           likedMovies={likedMovies}
           setLikedMovies={setLikedMovies}
-          isLikeClicked={isLikeClicked}
       />) : null}
     </>
   );

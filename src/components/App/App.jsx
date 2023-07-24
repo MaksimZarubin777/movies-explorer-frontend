@@ -45,14 +45,12 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [isLikeClicked, setIsLikeClicked] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
   const searchValue = localStorage.getItem('searchValue');
   const navigate = useNavigate();
   const location = useLocation();
-  const currentPath = window.location.pathname;
 
   // этой функцией проверяет достпен ли еще jwt и если нет, удаляем локалсторедж и loggedIn
   const getContent = () => {
@@ -71,25 +69,6 @@ function App() {
   useEffect(() => {
     getContent();
   }, []);
-
-  // функция проверки лайкнут ли уже фильм
-  const checkIsFilmLiked = () => {
-    const isFilmLiked = likedMovies && likedMovies
-      .some((likedFilm) => likedFilm.movieId === film.id);
-
-    if (isFilmLiked) {
-      setIsLikeClicked(true);
-    } else {
-      setIsLikeClicked(false);
-    }
-  };
-
-  // хук вызова функции проверки лайкнут ли уже фильм
-  useEffect(() => {
-    if (currentPath !== '/saved-movies') {
-      checkIsFilmLiked();
-    }
-  }, [likedMovies]);
 
   // функция получения фильмов с лайком
   const getLikedMovies = () => {
@@ -330,7 +309,6 @@ function App() {
             isLoaded={isLoaded}
             savedMovies={getLikedMovies}
             isCheckBoxActive={isCheckBoxActive}
-            isLikeClicked={isLikeClicked}
             />}
           <Footer />
           </>
