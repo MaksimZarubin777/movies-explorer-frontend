@@ -22,9 +22,9 @@ function MoviesCard({
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
-    const localSavedFilms = JSON.parse(localStorage.getItem('localSavedFilms'));
+    const localSavedFilms = JSON.parse(localStorage.getItem('localSavedMovies'));
     if (localSavedFilms) {
-      setLikedMoviesData([...likedMoviesData, localSavedFilms]);
+      setLikedMoviesData([localSavedFilms]);
       console.log(likedMoviesData);
     };
     const isFilmLiked = likedMoviesData && likedMoviesData
