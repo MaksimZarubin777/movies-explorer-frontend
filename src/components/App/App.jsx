@@ -56,6 +56,7 @@ function App() {
     MainApi.getUser()
       .then((user) => {
         setCurrentUser(user);
+        setLoggedIn(true);
       })
       .catch(() => {
         setLoggedIn(false);
