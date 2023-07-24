@@ -224,7 +224,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-  console.log(isLoggedIn);
+  console.log(loggedIn);
   // функция обновления пользователя
   const handleUpdateUser = (data) => {
     MainApi.updateUserInfo(data)
