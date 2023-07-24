@@ -56,7 +56,7 @@ function App() {
     MainApi.getUser()
       .then((user) => {
         setCurrentUser(user);
-        setLoggedIn(true);
+        // setLoggedIn(true);
       })
       .catch(() => {
         setLoggedIn(false);
@@ -242,7 +242,7 @@ function App() {
   const checkIsLoggedIn = () => {
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      navigate(location.pathname, { replace: true });
+      // navigate(location.pathname, { replace: true });
       setLoggedIn(true);
     }
   };
