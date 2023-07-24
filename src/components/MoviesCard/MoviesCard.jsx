@@ -36,7 +36,7 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [likedMovies]);
+  }, [likedMovies, setLikedMovies]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
