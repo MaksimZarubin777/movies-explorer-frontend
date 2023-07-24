@@ -8,10 +8,11 @@ function MoviesCard({
   likedMovies,
   handleMovieDelete,
   setLikedMovies,
+  isLikeClicked,
 }) {
   const currentPath = window.location.pathname;
   const BASE_URL = 'https://api.nomoreparties.co';
-  const [isLikeClicked, setIsLikeClicked] = useState(false);
+  // const [isLikeClicked, setIsLikeClicked] = useState(false);
 
   const handleClick = () => {
     if (film.trailerLink) {
@@ -19,24 +20,24 @@ function MoviesCard({
     }
   };
 
-  // функция проверки лайкнут ли уже фильм
-  const checkIsFilmLiked = () => {
-    const isFilmLiked = likedMovies && likedMovies
-      .some((likedFilm) => likedFilm.movieId === film.id);
+  // // функция проверки лайкнут ли уже фильм
+  // const checkIsFilmLiked = () => {
+  //   const isFilmLiked = likedMovies && likedMovies
+  //     .some((likedFilm) => likedFilm.movieId === film.id);
 
-    if (isFilmLiked) {
-      setIsLikeClicked(true);
-    } else {
-      setIsLikeClicked(false);
-    }
-  };
+  //   if (isFilmLiked) {
+  //     setIsLikeClicked(true);
+  //   } else {
+  //     setIsLikeClicked(false);
+  //   }
+  // };
 
-  // хук вызова функции проверки лайкнут ли уже фильм
-  useEffect(() => {
-    if (currentPath !== '/saved-movies') {
-      checkIsFilmLiked();
-    }
-  }, [likedMovies]);
+  // // хук вызова функции проверки лайкнут ли уже фильм
+  // useEffect(() => {
+  //   if (currentPath !== '/saved-movies') {
+  //     checkIsFilmLiked();
+  //   }
+  // }, [likedMovies]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
@@ -90,10 +91,7 @@ function MoviesCard({
         nameRU,
         nameEN,
       })
-        .then((data) => {
-          setLikedMovies([...likedMovies, data]);
-          checkIsFilmLiked();
-        })
+        .then((data) => setLikedMovies([...likedMovies, data]))
         .catch((err) => {
           console.log(err);
         });

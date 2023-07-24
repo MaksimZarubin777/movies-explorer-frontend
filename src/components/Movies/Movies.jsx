@@ -15,6 +15,7 @@ function Movies({
   isLoaded,
   savedMovies,
   isCheckBoxActive,
+  isLikeClicked,
 }) {
   return (
     <>
@@ -32,6 +33,7 @@ function Movies({
           savedMovies={savedMovies}
           likedMovies={likedMovies}
           setLikedMovies={setLikedMovies}
+          isLikeClicked={isLikeClicked}
       />) : null}
     </>
   );
