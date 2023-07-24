@@ -55,12 +55,10 @@ function App() {
   const getContent = () => {
     MainApi.getUser()
       .then((user) => {
-        console.log('при получении контента все ок');
         setCurrentUser(user);
         setLoggedIn(true);
       })
       .catch(() => {
-        console.log('при получении контента все НЕ ок');
         setLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
         navigate('/', { replace: true });
@@ -224,7 +222,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-  console.log(loggedIn);
+
   // функция обновления пользователя
   const handleUpdateUser = (data) => {
     MainApi.updateUserInfo(data)
@@ -244,7 +242,7 @@ function App() {
   const checkIsLoggedIn = () => {
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      // navigate('/movies', { replace: true });
+      navigate('/movies', { replace: true });
       setLoggedIn(true);
     }
   };
