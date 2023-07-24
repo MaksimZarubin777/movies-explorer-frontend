@@ -190,6 +190,13 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const films = JSON.parse(localStorage.getItem('films'));
+    if (films) {
+      setIsSearchPerformed(true);
+    }
+  }, []);
+
   // функция регистрации
   const handleRegister = async (values) => {
     const { email, password, name } = values;
