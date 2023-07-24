@@ -2,7 +2,7 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
 
-function Register({ onSubmit }) {
+function Register({ onSubmit, isSubmitting }) {
   return (
     <div className='register'>
       <div className='register__container'>
@@ -12,7 +12,7 @@ function Register({ onSubmit }) {
           { name: 'Имя', field: 'name' },
           { name: 'E-mail', field: 'email' },
           { name: 'Пароль', field: 'password' },
-        ]} button={'Зарегистрироваться'} onSubmit={onSubmit}/>
+        ]} button={'Зарегистрироваться'} onSubmit={onSubmit} isSubmitting={isSubmitting}/>
         <p className='register__button-subtitle'>Уже зарегистрированы? <Link to='/signin' className='register__button-subtitle_orange'>Войти</Link></p>
       </div>
     </div>

@@ -45,6 +45,7 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -200,6 +201,7 @@ function App() {
 
   // функция регистрации
   const handleRegister = async (values) => {
+    setIsSubmitting(true);
     const { email, password, name } = values;
     try {
       await MainApi.register(email, password, name);
@@ -210,10 +212,13 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+    setIsSubmitting(false);
   };
 
   // функция логина
   const handleLogin = async (email, password) => {
+    console.log('hui');
+    setIsSubmitting(true);
     try {
       await MainApi.login(email, password);
       localStorage.setItem('isLoggedIn', true);
@@ -224,6 +229,7 @@ function App() {
       setPopUpIsOpen(true);
       console.log(err);
     }
+    setIsSubmitting(false);
   };
 
   // функция логаута
@@ -342,8 +348,8 @@ function App() {
           </>
         }/>
 
-        <Route path="/signin" element={<Login onSubmit={handleLogin} />}/>
-        <Route path="/signup" element={<Register onSubmit={handleRegister}/>}/>
+        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting}/>}/>
+        <Route path="/signup" element={<Register onSubmit={handleRegister} isSubmitting={isSubmitting}/>}/>
         <Route path="*" element={<PageNotFound />} />
         </Routes>
       )}

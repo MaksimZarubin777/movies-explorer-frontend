@@ -10,7 +10,12 @@ import * as Yup from 'yup';
 import './Form.css';
 import { useLocation } from 'react-router-dom';
 
-function CustomForm({ inputs, button, onSubmit }) {
+function CustomForm({
+  inputs,
+  button,
+  onSubmit,
+  isSubmitting,
+}) {
   const initialValues = {};
   const location = useLocation();
   inputs.forEach((input) => {
@@ -58,8 +63,8 @@ function CustomForm({ inputs, button, onSubmit }) {
     return (
       <button
         type="submit"
-        className={isValid ? 'form__submit-button' : 'form__submit-button_disabled'}
-        disabled={!isValid}
+        className={isValid && !isSubmitting ? 'form__submit-button' : 'form__submit-button_disabled'}
+        disabled={!isValid || isSubmitting}
       >
         {button}
       </button>
