@@ -1,8 +1,9 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
+import PopupLogin from '../Popup/PopupLogin';
 
-function Login({ onSubmit, isSubmitting }) {
+function Login({ onSubmit, isSubmitting, isOpen, onClose }) {
   const handleSubmit = (value) => {
     const { email, password } = value;
     onSubmit(email, password);
@@ -10,6 +11,7 @@ function Login({ onSubmit, isSubmitting }) {
 
   return (
     <div className='login'>
+      <PopupLogin isOpen={isOpen} onClose={onClose}/>
       <div className='login__container'>
         <Link to='/' className='login__logo' alt='Логотип'/>
         <h2 className='login__title'>Рады видеть!</h2>
