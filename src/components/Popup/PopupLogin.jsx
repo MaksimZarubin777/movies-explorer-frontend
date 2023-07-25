@@ -78,7 +78,7 @@ function PopupLogin({
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="popup-auth">
       <div className="popup__container_auth">
         <button className="popup__button-close" id="popup-auth-close" type="button" onClick={onClose}></button>
-        {loggedId ? (
+        {loggedIn ? (
           <>
             <img src={authOk} className='popup__auth_image' alt='Success'></img>
             <h3 className="popup__auth_h3">Все прошло успешно!</h3>
