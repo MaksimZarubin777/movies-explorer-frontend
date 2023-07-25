@@ -20,7 +20,7 @@ import PageNotFound from '../PageNotFound/PageNotFound.jsx';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
-import PopupLogin from '../Popup/PopupLogin';
+import PopupLogin from '../Popup/PopupLogin.jsx';
 
 function App() {
   // стейт записи логина
@@ -293,7 +293,7 @@ function App() {
         loggedIn={loggedIn}
         onClose={closeAllPopups}
       />
-      
+
       {isTokenChecked && (
         <Routes>
 
