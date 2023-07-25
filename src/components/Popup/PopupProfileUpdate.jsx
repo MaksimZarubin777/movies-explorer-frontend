@@ -3,9 +3,9 @@ import './Popup.css';
 import authOk from '../../images/auth_v.svg';
 import authBad from '../../images/auth_x.svg';
 
-function PopupLogin({
+function PopupProfileUpdate({
   onClose,
-  loggedIn,
+  isProfileChanged,
   isOpen,
 }) {
   // закрытие попапа через эскейп
@@ -78,10 +78,10 @@ function PopupLogin({
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="popup-auth">
       <div className="popup__container_auth">
         <button className="popup__button-close" id="popup-auth-close" type="button" onClick={onClose}></button>
-        {loggedIn ? (
+        {isProfileChanged ? (
           <>
             <img src={authOk} className='popup__auth_image' alt='Success'></img>
-            <h3 className="popup__auth_h3">Рады снова видеть!</h3>
+            <h3 className="popup__auth_h3">Данные обновлены</h3>
           </>
         ) : (
         <>
@@ -94,4 +94,4 @@ function PopupLogin({
   );
 }
 
-export default PopupLogin;
+export default PopupProfileUpdate;

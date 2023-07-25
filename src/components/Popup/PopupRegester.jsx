@@ -3,7 +3,7 @@ import './Popup.css';
 import authOk from '../../images/auth_v.svg';
 import authBad from '../../images/auth_x.svg';
 
-function PopupLogin({
+function PopupRegester({
   onClose,
   loggedIn,
   isOpen,
@@ -81,7 +81,7 @@ function PopupLogin({
         {loggedIn ? (
           <>
             <img src={authOk} className='popup__auth_image' alt='Success'></img>
-            <h3 className="popup__auth_h3">Рады снова видеть!</h3>
+            <h3 className="popup__auth_h3">Добро пожаловать!</h3>
           </>
         ) : (
         <>
@@ -94,4 +94,4 @@ function PopupLogin({
   );
 }
 
-export default PopupLogin;
+export default PopupRegester;

@@ -21,6 +21,9 @@ import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import PopupLogin from '../Popup/PopupLogin.jsx';
+import PopupRegester from '../Popup/PopupRegester';
+import PopupProfileUpdate from '../Popup/PopupProfileUpdate';
+import PopupNoInput from '../Popup/PopupNoInput';
 
 function App() {
   // стейт записи логина
@@ -41,9 +44,6 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isLikedSearchPerformed, setIsLikedSearchPerformed] = useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
-  const [popUpIsOpen, setPopUpIsOpen] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
-  // const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -52,6 +52,7 @@ function App() {
   const [isPopupRegisterOpen, setIsPopupRegisterOpen] = useState(false);
   const [isPopupProfileUpdateOpen, setIsPopupProfileUpdateOpen] = useState(false);
   const [isPopupNoInputOpen, setIsPopupNoInputOpen] = useState(false);
+  const [isProfileChanged, setisProfileChanged] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -174,7 +175,7 @@ function App() {
   const handleSearch = (e) => {
     setIsLoading(true);
     if (e.target.elements.film.value === '') {
-      setPopUpIsOpen(true);
+      setIsPopupNoInputOpen(true);
       setIsClicked(true);
       setIsLoading(false);
     } else if (!isSearchPerformed) {
@@ -213,9 +214,10 @@ function App() {
       await MainApi.register(email, password, name);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
-      setPopUpIsOpen(true);
+      setIsPopupRegisterOpen(true);
       navigate('/movies', { relace: true });
     } catch (err) {
+      setIsPopupRegisterOpen(true);
       console.log(err);
     }
     setIsSubmitting(false);
@@ -254,14 +256,13 @@ function App() {
     MainApi.updateUserInfo(data)
       .then((newUserData) => {
         setCurrentUser(newUserData);
-        setPopUpIsOpen(true);
+        setIsPopupProfileUpdateOpen(true);
         setisProfileChanged(true);
       })
       .catch((err) => {
         console.log(err);
-        setPopUpIsOpen(true);
+        setIsPopupProfileUpdateOpen(true);
       });
-    setisProfileChanged(false);
     setIsSubmitting(false);
   };
 
@@ -282,6 +283,10 @@ function App() {
 
   const closeAllPopups = () => {
     setIsPopupLoginOpen(false);
+    setIsPopupRegisterOpen(false);
+    setIsPopupProfileUpdateOpen(false);
+    setIsPopupNoInputOpen(false);
+
   };
 
   return (
@@ -293,7 +298,20 @@ function App() {
         loggedIn={loggedIn}
         onClose={closeAllPopups}
       />
-
+      <PopupRegester 
+        isOpen={isPopupRegisterOpen}
+        loggedIn={loggedIn}
+        onClose={closeAllPopups}
+      />
+      <PopupProfileUpdate 
+        isOpen={isPopupProfileUpdateOpen}
+        isProfileChanged={isProfileChanged}
+        onClose={closeAllPopups}
+      />
+      <PopupNoInput 
+        isOpen={isPopupNoInputOpen}
+        onClose={closeAllPopups}
+      />
       {isTokenChecked && (
         <Routes>
 
