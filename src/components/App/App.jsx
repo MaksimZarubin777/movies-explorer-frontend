@@ -175,7 +175,6 @@ function App() {
   const handleSearch = (e) => {
     if (e.target.elements.film.value === '') {
       setIsPopupNoInputOpen(true);
-      setIsClicked(true);
       setIsLoading(false);
     } else if (!isSearchPerformed) {
       setIsLoading(true);
