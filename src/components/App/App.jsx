@@ -21,9 +21,9 @@ import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import PopupLogin from '../Popup/PopupLogin.jsx';
-import PopupRegester from '../Popup/PopupRegester';
-import PopupProfileUpdate from '../Popup/PopupProfileUpdate';
-import PopupNoInput from '../Popup/PopupNoInput';
+import PopupRegester from '../Popup/PopupRegester.jsx';
+import PopupProfileUpdate from '../Popup/PopupProfileUpdate.jsx';
+import PopupNoInput from '../Popup/PopupNoInput.jsx';
 
 function App() {
   // стейт записи логина
