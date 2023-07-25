@@ -1,7 +1,7 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
-import Popup from '../Popup/Popup';
+import Popup from '../Popup/Popup.jsx';
 
 function Login({ onSubmit, isSubmitting, onClose, isOpen }) {
   const handleSubmit = (value) => {
