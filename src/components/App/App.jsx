@@ -20,7 +20,7 @@ import PageNotFound from '../PageNotFound/PageNotFound.jsx';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
-import Popup from '../Popup/Popup.jsx';
+// import Popup from '../Popup/Popup.jsx';
 
 function App() {
   // стейт записи логина
@@ -42,8 +42,8 @@ function App() {
   const [isLikedSearchPerformed, setIsLikedSearchPerformed] = useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [isProfileChanged, setisProfileChanged] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
+  // const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -351,7 +351,7 @@ function App() {
           </>
         }/>
 
-        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting} isOpen={popUpIsOpen} onClose={closePopUp}/>}/>
+        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting} onClose={closePopUp} isOpen={popUpIsOpen}/>}/>
         <Route path="/signup" element={<Register onSubmit={handleRegister} isSubmitting={isSubmitting}/>}/>
         <Route path="*" element={<PageNotFound />} />
         </Routes>
