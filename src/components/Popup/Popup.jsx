@@ -10,6 +10,8 @@ function Popup({
   isSearched,
   isProfileChanged,
 }) {
+  const currentPath = window.location.pathname;
+
   // закрытие попапа через эскейп
   useEffect(() => {
     function handleEscapeClose(event) {
@@ -39,7 +41,7 @@ function Popup({
   });
 
   let popupContent;
-  if (loggedIn && !isSearched && !isProfileChanged) {
+  if (loggedIn && currentPath === '/signin') {
     popupContent = (
       <>
         <img src={authOk} className='popup__auth_image' alt='Success'></img>
@@ -53,18 +55,18 @@ function Popup({
         <h3 className="popup__auth_h3">Нечего искать - введите что-нибудь в поиск и попробуйте снова</h3>
       </>
     );
-  } else if (loggedIn && isProfileChanged) {
+  } else if (loggedIn && isProfileChanged && currentPath === '/profile') {
     popupContent = (
       <>
         <img src={authOk} className='popup__auth_image' alt='Error'></img>
         <h3 className="popup__auth_h3">Данные успешно обовлены!</h3>
       </>
     );
-  } else if (loggedIn && !isProfileChanged) {
+  } else if (loggedIn && !isProfileChanged && currentPath === '/profile') {
     popupContent = (
       <>
         <img src={authBad} className='popup__auth_image' alt='Error'></img>
-        <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
+        <h3 className="popup__auth_h3">Некорректные данные для обновления профиля.</h3>
       </>
     );
   } else {
