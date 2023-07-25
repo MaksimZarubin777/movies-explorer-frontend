@@ -173,12 +173,12 @@ function App() {
 
   // функция поиска фильма
   const handleSearch = (e) => {
-    setIsLoading(true);
     if (e.target.elements.film.value === '') {
       setIsPopupNoInputOpen(true);
       setIsClicked(true);
       setIsLoading(false);
     } else if (!isSearchPerformed) {
+      setIsLoading(true);
       MoviesApi.getMovies()
         .then((res) => {
           setFilms(res);
