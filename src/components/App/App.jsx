@@ -20,7 +20,7 @@ import PageNotFound from '../PageNotFound/PageNotFound.jsx';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
-// import Popup from '../Popup/Popup.jsx';
+import PopupLogin from '../Popup/PopupLogin';
 
 function App() {
   // стейт записи логина
@@ -46,6 +46,12 @@ function App() {
   // const [isProfileChanged, setisProfileChanged] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // popups
+  const [isPopupLoginOpen, setIsPopupLoginOpen] = useState(false);
+  const [isPopupRegisterOpen, setIsPopupRegisterOpen] = useState(false);
+  const [isPopupProfileUpdateOpen, setIsPopupProfileUpdateOpen] = useState(false);
+  const [isPopupNoInputOpen, setIsPopupNoInputOpen] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -217,16 +223,15 @@ function App() {
 
   // функция логина
   const handleLogin = async (email, password) => {
-    console.log('hui');
     setIsSubmitting(true);
     try {
       await MainApi.login(email, password);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
-      setPopUpIsOpen(true);
+      setIsPopupLoginOpen(true)
       navigate('/movies', { replace: true });
     } catch (err) {
-      setPopUpIsOpen(true);
+      setIsPopupLoginOpen(true)
       console.log(err);
     }
     setIsSubmitting(false);
@@ -275,21 +280,20 @@ function App() {
     checkIsLoggedIn();
   }, []);
 
-  const closePopUp = () => {
-    setPopUpIsOpen(false);
+  const closeAllPopups = () => {
+    setIsPopupLoginOpen(false);
   };
 
   return (
     <div className="page">
       <BurgerMenuProvider>
       <CurrentUserContext.Provider value={currentUser}>
-      {/* <Popup
-        isOpen={popUpIsOpen}
+      <PopupLogin
+        isOpen={isPopupLoginOpen}
         loggedIn={loggedIn}
-        onClose={closePopUp}
-        isSearched={isClicked}
-        isProfileChanged={isProfileChanged}
-      /> */}
+        onClose={closeAllPopups}
+      />
+      
       {isTokenChecked && (
         <Routes>
 

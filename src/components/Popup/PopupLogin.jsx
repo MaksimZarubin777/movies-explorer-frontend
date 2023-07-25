@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import './Popup.css';
 import authOk from '../../images/auth_v.svg';
-// import authBad from '../../images/auth_x.svg';
+import authBad from '../../images/auth_x.svg';
 
-function Popup({
+function PopupLogin({
   onClose,
-  // loggedIn,
+  loggedIn,
   isOpen,
-  // isSearched,
-  // isProfileChanged,
 }) {
   // закрытие попапа через эскейп
   useEffect(() => {
@@ -80,13 +78,20 @@ function Popup({
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="popup-auth">
       <div className="popup__container_auth">
         <button className="popup__button-close" id="popup-auth-close" type="button" onClick={onClose}></button>
+        {loggedId ? (
+          <>
+            <img src={authOk} className='popup__auth_image' alt='Success'></img>
+            <h3 className="popup__auth_h3">Все прошло успешно!</h3>
+          </>
+        ) : (
         <>
-          <img src={authOk} className='popup__auth_image' alt='Success'></img>
-          <h3 className="popup__auth_h3">Все прошло успешно!</h3>
+          <img src={authBad} className='popup__auth_image' alt='Success'></img>
+          <h3 className="popup__auth_h3">Что-то пошло не так</h3>
         </>
+        )}
       </div>
     </div>
   );
 }
 
-export default Popup;
+export default PopupLogin;
