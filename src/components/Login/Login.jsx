@@ -2,7 +2,7 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
 
-function Login({ onSubmit, isSubmitting, }) {
+function Login({ onSubmit, isSubmitting }) {
   const handleSubmit = (value) => {
     const { email, password } = value;
     onSubmit(email, password);

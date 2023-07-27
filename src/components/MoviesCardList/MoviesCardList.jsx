@@ -1,6 +1,19 @@
 import { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard.jsx';
 import './MoviesCardList.css';
+import {
+  GAP_EXTRA_SMALL,
+  GAP_LARGE,
+  GAP_MEDIUM,
+  GAP_SMALL,
+  MAX_FILM_AMOUNT_EXTRA_SMALL,
+  MAX_FILM_AMOUNT_LARGE,
+  MAX_FILM_AMOUNT_MEDIUM,
+  MAX_FILM_AMOUNT_SMALL,
+  SCREEN_SIZE_LARGE,
+  SCREEN_SIZE_MEDIUM,
+  SCREEN_SIZE_SMALL,
+} from '../../vendor/constants';
 
 function MoviesCardList({
   films,
@@ -36,18 +49,18 @@ function MoviesCardList({
 
   // отслеживаем изменения windowWidth и устанавливаем filmAmount
   useEffect(() => {
-    if (windowWidth >= 1280) {
-      setFilmAmount(12);
-      setGap(4);
-    } else if (windowWidth >= 990) {
-      setFilmAmount(12);
-      setGap(3);
-    } else if (windowWidth >= 768) {
-      setFilmAmount(8);
-      setGap(2);
-    } else if (windowWidth < 768) {
-      setFilmAmount(5);
-      setGap(2);
+    if (windowWidth >= SCREEN_SIZE_LARGE) {
+      setFilmAmount(MAX_FILM_AMOUNT_LARGE);
+      setGap(GAP_LARGE);
+    } else if (windowWidth >= SCREEN_SIZE_MEDIUM) {
+      setFilmAmount(MAX_FILM_AMOUNT_MEDIUM);
+      setGap(GAP_MEDIUM);
+    } else if (windowWidth >= SCREEN_SIZE_SMALL) {
+      setFilmAmount(MAX_FILM_AMOUNT_SMALL);
+      setGap(GAP_SMALL);
+    } else if (windowWidth < SCREEN_SIZE_SMALL) {
+      setFilmAmount(MAX_FILM_AMOUNT_EXTRA_SMALL);
+      setGap(GAP_EXTRA_SMALL);
     }
   }, [windowWidth]);
 

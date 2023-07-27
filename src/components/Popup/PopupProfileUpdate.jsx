@@ -36,44 +36,6 @@ function PopupProfileUpdate({
     };
   });
 
-  // let popupContent;
-  // if (loggedIn && !isSearched && !isProfileChanged) {
-  //   popupContent = (
-  //     <>
-  //       <img src={authOk} className='popup__auth_image' alt='Success'></img>
-  //       <h3 className="popup__auth_h3">Все прошло успешно!</h3>
-  //     </>
-  //   );
-  // } else if (loggedIn && isSearched) {
-  //   popupContent = (
-  //     <>
-  //       <img src={authBad} className='popup__auth_image' alt='Error'></img>
-  //       <h3 className="popup__auth_h3">Нечего искать - введите что-нибудь в поиск и попробуйте снова</h3>
-  //     </>
-  //   );
-  // } else if (loggedIn && isProfileChanged) {
-  //   popupContent = (
-  //     <>
-  //       <img src={authOk} className='popup__auth_image' alt='Error'></img>
-  //       <h3 className="popup__auth_h3">Данные успешно обовлены!</h3>
-  //     </>
-  //   );
-  // } else if (loggedIn && !isProfileChanged) {
-  //   popupContent = (
-  //     <>
-  //       <img src={authBad} className='popup__auth_image' alt='Error'></img>
-  //       <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
-  //     </>
-  //   );
-  // } else {
-  //   popupContent = (
-  //     <>
-  //       <img src={authBad} className='popup__auth_image' alt='Error'></img>
-  //       <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
-  //     </>
-  //   );
-  // }
-
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="popup-auth">
       <div className="popup__container_auth">

@@ -39,7 +39,6 @@ function CustomForm({
   });
 
   const handleSubmit = (values) => {
-    console.log('val', values);
     onSubmit(values);
   };
 

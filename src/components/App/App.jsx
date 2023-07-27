@@ -229,10 +229,10 @@ function App() {
       await MainApi.login(email, password);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
-      setIsPopupLoginOpen(true)
+      setIsPopupLoginOpen(true);
       navigate('/movies', { replace: true });
     } catch (err) {
-      setIsPopupLoginOpen(true)
+      setIsPopupLoginOpen(true);
       console.log(err);
     }
     setIsSubmitting(false);
@@ -285,7 +285,6 @@ function App() {
     setIsPopupRegisterOpen(false);
     setIsPopupProfileUpdateOpen(false);
     setIsPopupNoInputOpen(false);
-
   };
 
   return (
@@ -297,17 +296,17 @@ function App() {
         loggedIn={loggedIn}
         onClose={closeAllPopups}
       />
-      <PopupRegester 
+      <PopupRegester
         isOpen={isPopupRegisterOpen}
         loggedIn={loggedIn}
         onClose={closeAllPopups}
       />
-      <PopupProfileUpdate 
+      <PopupProfileUpdate
         isOpen={isPopupProfileUpdateOpen}
         isProfileChanged={isProfileChanged}
         onClose={closeAllPopups}
       />
-      <PopupNoInput 
+      <PopupNoInput
         isOpen={isPopupNoInputOpen}
         onClose={closeAllPopups}
       />
