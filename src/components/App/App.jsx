@@ -84,6 +84,7 @@ function App() {
     MainApi.getFilms()
       .then((data) => {
         setLikedMovies(data.data);
+        setFilteredLikedMovies(data.data);
         localStorage.setItem('likedMovies', JSON.stringify(data));
         setisLoaded(true);
       })
