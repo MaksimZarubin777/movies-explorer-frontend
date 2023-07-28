@@ -31,7 +31,7 @@ function SearchForm({
       handleSubmit(e);
     } else {
       localStorage.setItem('savedSearchValue', searchValue.toLowerCase());
-      handleSubmitSaved(searchValue.toLowerCase());
+      handleSubmitSaved(e, searchValue.toLowerCase());
     }
   };
 
