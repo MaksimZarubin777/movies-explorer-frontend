@@ -136,7 +136,11 @@ function App() {
   };
 
   // функция поиска по лайкнутым фильмам
-  const handleSubmitSaved = (savedSearchValue) => {
+  const handleSubmitSaved = (e, savedSearchValue) => {
+    if (e.target.elements.film.value === '') {
+      setIsPopupNoInputOpen(true);
+      setIsLoading(false);
+    }
     filterFilms(likedMovies, savedSearchValue);
   };
 
