@@ -166,6 +166,7 @@ function App() {
   // хук фильтрации фильмов по активации чекбокса
   useEffect(() => {
     if (location.pathname === '/movies') {
+      console.log('11', films, searchValue);
       filterFilms(films, searchValue);
     } else {
       filterFilms(likedMovies, searchValue);
