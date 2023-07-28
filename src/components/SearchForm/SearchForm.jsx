@@ -10,22 +10,17 @@ function SearchForm({
 }) {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
-  const [checkBoxStatus, setCheckBoxStatus] = useState(
-    JSON.parse(localStorage.getItem('checkBoxStatus'))
-  );
+  const [checkBoxStatus, setCheckBoxStatus] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
 
-  useEffect(() => {
-    localStorage.setItem('checkBoxStatus', checkBoxStatus);
-  }, [checkBoxStatus])
-
   // устанавливем статус чекбокса
   const handleCheckBox = (e) => {
-    setCheckBoxStatus(e.target.checked);
     setIsCheckBoxActive(e.target.checked);
+    setCheckBoxStatus(e.target.checked);
+    localStorage.setItem('checkBoxStatus', e.target.checked);
   };
 
   const handleSubmitSearch = (e) => {
@@ -44,11 +39,11 @@ function SearchForm({
   useEffect(() => {
     if (location.pathname === '/movies') {
       const savedSearchValue = localStorage.getItem('searchValue');
-      const savedCheckBoxStatus = localStorage.getItem('isCheckBoxActive');
+      const savedCheckBoxStatus = JSON.parse(localStorage.getItem('checkBoxStatus'));
       if (savedSearchValue) {
         setSearchValue(savedSearchValue);
       }
-      setCheckBoxStatus(JSON.parse(savedCheckBoxStatus));
+      setCheckBoxStatus(savedCheckBoxStatus);
     }
   }, [location.pathname]);
 
@@ -65,7 +60,7 @@ function SearchForm({
         </form>
         <div className='search-form__filter'>
           <label className='switch'>
-            <input type='checkbox' checked={localStorage.getItem('checkBoxStatus')} className='search-form__filter_checkbox' onChange={handleCheckBox}/>
+            <input type='checkbox' checked={checkBoxStatus} className='search-form__filter_checkbox' onChange={handleCheckBox}/>
             <span className='slider'></span>
           </label>
           <p className='search-form__filter_text'>Короткометражки</p>
