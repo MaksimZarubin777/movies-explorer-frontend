@@ -10,7 +10,9 @@ function SearchForm({
 }) {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
-  const [checkBoxStatus, setCheckBoxStatus] = useState(false);
+  const [checkBoxStatus, setCheckBoxStatus] = useState(
+    JSON.parse(localStorage.getItem('checkBoxStatus'))
+  );
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -22,8 +24,8 @@ function SearchForm({
 
   // устанавливем статус чекбокса
   const handleCheckBox = (e) => {
-    setIsCheckBoxActive(e.target.checked);
     setCheckBoxStatus(e.target.checked);
+    setIsCheckBoxActive(e.target.checked);
   };
 
   const handleSubmitSearch = (e) => {
