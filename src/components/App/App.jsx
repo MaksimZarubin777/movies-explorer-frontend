@@ -69,6 +69,7 @@ function App() {
       })
       .catch(() => {
         setLoggedIn(false);
+        localStorage.clear();
         localStorage.removeItem('isLoggedIn');
         navigate('/', { replace: true });
       });
