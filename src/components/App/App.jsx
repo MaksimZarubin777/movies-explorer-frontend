@@ -378,8 +378,8 @@ function App() {
           </>
         }/>
 
-        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting} isLoggedIn={LoggedIn}/>}/>
-        <Route path="/signup" element={<Register onSubmit={handleRegister} isSubmitting={isSubmitting} isLoggedIn={LoggedIn}/>}/>
+        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting} isLoggedIn={loggedIn}/>}/>
+        <Route path="/signup" element={<Register onSubmit={handleRegister} isSubmitting={isSubmitting} isLoggedIn={loggedIn}/>}/>
         <Route path="*" element={<PageNotFound />} />
         </Routes>
       )}
