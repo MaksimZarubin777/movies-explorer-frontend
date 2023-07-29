@@ -77,7 +77,7 @@ function MoviesCardList({
     setDisplayedFilms(films && films.length > 0 ? films.slice(0, newFilmAmount) : []);
     setFilmsRemain(films && films.length > 0 ? films.length - newFilmAmount : 0);
   };
-
+  console.log(isSearchPerformed, '11');
   return (
     <section className="movies-card-list">
       <div className='movies-card-list__container'>
