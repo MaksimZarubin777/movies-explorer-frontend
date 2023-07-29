@@ -1,12 +1,20 @@
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
 
-function Login({ onSubmit, isSubmitting }) {
+function Login({ onSubmit, isSubmitting, isLoggedIn }) {
   const handleSubmit = (value) => {
     const { email, password } = value;
     onSubmit(email, password);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [])
 
   return (
     <div className='login'>

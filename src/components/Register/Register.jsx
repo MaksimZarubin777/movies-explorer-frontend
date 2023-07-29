@@ -1,8 +1,16 @@
 import './Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomForm from '../Form/Form.jsx';
 
-function Register({ onSubmit, isSubmitting }) {
+function Register({ onSubmit, isSubmitting, isLoggedIn }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [])
+
   return (
     <div className='register'>
       <div className='register__container'>
