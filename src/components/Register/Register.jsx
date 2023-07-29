@@ -1,5 +1,6 @@
 import './Register.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import CustomForm from '../Form/Form.jsx';
 
 function Register({ onSubmit, isSubmitting, isLoggedIn }) {
