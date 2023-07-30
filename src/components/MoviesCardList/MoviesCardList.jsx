@@ -34,7 +34,7 @@ function MoviesCardList({
   const [displayedFilms, setDisplayedFilms] = useState([]);
   // устанавливаем шаг добавления новых фильмов в зависимости от размера окна
   const [gap, setGap] = useState(0);
-
+  console.log(films);
   // при изменении размера окна устанавливаем windowWidth равным размеру окна
   useEffect(() => {
     const handleResize = () => {

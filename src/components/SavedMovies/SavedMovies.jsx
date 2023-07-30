@@ -9,6 +9,7 @@ function SavedMovies({
   handleSubmitSaved,
   setIsCheckBoxActive,
 }) {
+  const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
   return (
     <>
       <SearchForm
@@ -18,7 +19,7 @@ function SavedMovies({
     />
       {isLoaded ? (
         <MoviesCardList
-          films={JSON.parse(localStorage.getItem('likedMovies')) || []}
+          films={localLikedMovies}
           handleMovieDelete={onDelete}
       />
       ) : null}
