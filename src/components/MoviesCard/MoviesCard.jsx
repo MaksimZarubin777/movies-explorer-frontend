@@ -23,7 +23,10 @@ function MoviesCard({
     const isFilmLiked = likedMovies && likedMovies
       .some((likedFilm) => likedFilm.movieId === film.id);
 
-    if (isFilmLiked) {
+    const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+    const isFilmLikedInLocalStorage = localLikedMovies.some((likedFilm) => likedFilm.movieId === film.id);  
+
+    if (isFilmLiked || isFilmLikedInLocalStorage) {
       setIsLikeClicked(true);
     } else {
       setIsLikeClicked(false);
@@ -92,7 +95,7 @@ function MoviesCard({
         .then((movie) => {
           const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
           localLikedMovies.push(movie);
-          localStorage
+          localStorage.setItem('likedMovies', JSON.stringify(localLikedMovies));
         })
         .catch((err) => {
           console.log(err);
