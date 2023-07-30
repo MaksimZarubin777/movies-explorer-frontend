@@ -38,7 +38,23 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [likedMovies, isLikeClicked]);
+  }, [likedMovies]);
+
+  // Добавим обработчик события "storage" для отслеживания изменений в localStorage
+useEffect(() => {
+  const handleStorageChange = () => {
+    // В localStorage произошли изменения, вызываем функцию проверки лайка заново
+    checkIsFilmLiked();
+  };
+
+  // Добавляем обработчик события "storage"
+  window.addEventListener('storage', handleStorageChange);
+
+  // Удаляем обработчик события при размонтировании компонента (очистке)
+  return () => {
+    window.removeEventListener('storage', handleStorageChange);
+  };
+}, []);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
