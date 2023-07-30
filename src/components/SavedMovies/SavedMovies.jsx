@@ -3,27 +3,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList.jsx';
 
 function SavedMovies({
   handleSearch,
-  // likedMovies,
+  likedMovies,
   isLoaded,
   onDelete,
   handleSubmitSaved,
   setIsCheckBoxActive,
-  isLikedSearchPerformed,
 }) {
   console.log(likedMovies);
-  const [likedMovies, setLikedMovies] = useState([]);
-  
-  useEffect(() => {
-    if(isLikedSearchPerformed) {
-      const storedLikedMovies = JSON.parse(localStorage.getItem('filteredLikedMovies'));
-    } else {
-      const storedLikedMovies = JSON.parse(localStorage.getItem('likedMovies'));
-    }
-    if (storedLikedMovies) {
-      setLikedMovies(storedLikedMovies);
-    }
-  }, []);
-
   return (
     <>
       <SearchForm

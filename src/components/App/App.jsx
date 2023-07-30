@@ -113,7 +113,7 @@ function App() {
     MainApi.deleteMovie(movieId)
       .then(() => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== movieId);
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
       })
       .catch((err) => console.log(err));
@@ -134,7 +134,6 @@ function App() {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
-      console.log('это в елсе у фильтеред филмс', searchedFilms);
       localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
@@ -359,12 +358,11 @@ function App() {
           {<ProtectedRouteElement element={SavedMovies}
           isLoggedIn={loggedIn}
           handleSearch={handleSearch}
-          // likedMovies={isLikedSearchPerformed ? JSON.parse(localStorage.getItem('filteredLikedMovies')) : JSON.parse(localStorage.getItem('likedMovies'))}
+          likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
           isLoaded={isLoaded}
           onDelete={handleMovieDelete}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
-          isLikedSearchPerformed={isLikedSearchPerformed}
             />}
           <Footer />
           </>
