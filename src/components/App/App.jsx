@@ -134,6 +134,7 @@ function App() {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
+      console.log('это в елсе у фильтеред филмс', searchData);
       localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
