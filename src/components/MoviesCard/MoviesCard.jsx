@@ -8,6 +8,7 @@ function MoviesCard({
   savedMovies,
   likedMovies,
   handleMovieDelete,
+  setLikedMovies,
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
@@ -46,6 +47,7 @@ function MoviesCard({
       .then((film) => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
         const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== film._id);
+        setLikedMovies(updatedLikedMovies);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
         console.log('eto spisok posle delete', JSON.parse(localStorage.getItem('likedMovies')));
       })

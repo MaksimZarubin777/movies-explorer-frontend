@@ -356,6 +356,7 @@ function App() {
           likedMovies={isLikedSearchPerformed ? JSON.parse(localStorage.getItem('filteredLikedMovies')) : JSON.parse(localStorage.getItem('likedMovies'))}
           isLoaded={isLoaded}
           // onDelete={handleMovieDelete}
+          setLikedMovies={setLikedMovies}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
             />}

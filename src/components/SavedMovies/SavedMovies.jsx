@@ -8,6 +8,7 @@ function SavedMovies({
   onDelete,
   handleSubmitSaved,
   setIsCheckBoxActive,
+  setLikedMovies,
 }) {
   return (
     <>
@@ -20,6 +21,7 @@ function SavedMovies({
         <MoviesCardList
           films={likedMovies}
           handleMovieDelete={onDelete}
+          setLikedMovies={setLikedMovies}
       />
       ) : null}
     </>
