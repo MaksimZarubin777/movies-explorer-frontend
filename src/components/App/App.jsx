@@ -134,6 +134,7 @@ function App() {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
+      localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
   };
@@ -357,7 +358,7 @@ function App() {
           {<ProtectedRouteElement element={SavedMovies}
           isLoggedIn={loggedIn}
           handleSearch={handleSearch}
-          likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
+          likedMovies={isLikedSearchPerformed ? JSON.parse(localStorage.getItem('filteredLikedMovies')) : JSON.parse(localStorage.getItem('likedMovies'))}
           isLoaded={isLoaded}
           onDelete={handleMovieDelete}
           handleSubmitSaved={handleSubmitSaved}
