@@ -44,10 +44,9 @@ function MoviesCard({
   // функция удаления лайка
   const filmLikeDelete = () => {
     MainApi.deleteMovie(film._id)
-      .then((film) => {
+      .then((deletedFilm) => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        console.log('local', localLikedMovies);
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== film._id);
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm._id);
         console.log('updated', updatedLikedMovies);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
       })
