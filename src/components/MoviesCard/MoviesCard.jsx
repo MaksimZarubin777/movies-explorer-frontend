@@ -45,6 +45,7 @@ function MoviesCard({
   const filmLikeDelete = () => {
     MainApi.deleteMovie(film._id)
       .then((deletedFilm) => {
+        console.log(deletedFilm);
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
         const updatedLikedMovies = localLikedMovies.filter((movie) => console.log(movie._id, deletedFilm._id));
         console.log('updated', updatedLikedMovies);
