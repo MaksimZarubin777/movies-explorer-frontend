@@ -9,7 +9,7 @@ function SavedMovies({
   handleSubmitSaved,
   setIsCheckBoxActive,
 }) {
-  // const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+  console.log(likedMovies);
   return (
     <>
       <SearchForm
