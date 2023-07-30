@@ -112,6 +112,12 @@ function App() {
   const handleMovieDelete = (movieId) => {
     MainApi.deleteMovie(movieId)
       .then(() => {
+        setLikedMovies((prevLikedMovies) =>
+        prevLikedMovies.filter((movie) => movie.movieId !== movieId)
+      );
+        setFilteredLikedMovies((prevFilteredLikedMovies) =>
+          prevFilteredLikedMovies.filter((movie) => movie.movieId !== movieId)
+      );
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
         const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== movieId);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
