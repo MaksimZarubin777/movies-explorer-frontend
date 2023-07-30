@@ -47,7 +47,7 @@ function MoviesCard({
       .then((film) => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
         console.log('local', localLikedMovies);
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== film._id);
+        const updatedLikedMovies = localLikedMovies.filter((movie) => console.log('movie', movie));
         console.log('updated', updatedLikedMovies);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
       })
