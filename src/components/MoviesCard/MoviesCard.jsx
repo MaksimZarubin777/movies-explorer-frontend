@@ -76,7 +76,7 @@ function MoviesCard({
       nameRU,
       nameEN,
     } = film;
-    const filmToLike = likedMovies && likedMovies
+    const filmToLike = localStorage.getItem('likedMovies') && localStorage.getItem('likedMovies')
       .find((movie) => movie.movieId === id);
     if (!filmToLike) {
       MainApi.saveMovie({
