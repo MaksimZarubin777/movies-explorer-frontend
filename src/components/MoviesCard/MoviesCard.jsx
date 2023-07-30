@@ -94,7 +94,7 @@ function MoviesCard({
       })
         .then((movie) => {
           const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-          localLikedMovies.push(movie);
+          localLikedMovies.push(movie.data);
           localStorage.setItem('likedMovies', JSON.stringify(localLikedMovies));
         })
         .catch((err) => {
