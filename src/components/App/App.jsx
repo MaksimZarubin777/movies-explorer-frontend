@@ -109,7 +109,7 @@ function App() {
   }, [loggedIn]);
 
   // функция удаления лайка
-  const handleMovieDelete = (movieId) => {
+  const handleMovieDelete = (movieId, id) => {
     MainApi.deleteMovie(movieId)
       .then(() => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
