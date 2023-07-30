@@ -342,7 +342,7 @@ function App() {
             isSearchPerformed={isSearchPerformed}
             isError={isError}
             setIsCheckBoxActive={setIsCheckBoxActive}
-            likedMovies={likedMovies}
+            likedMovies={JSON.parse(localStorage.getItem('likedMovies'))}
             setLikedMovies={setLikedMovies}
             isLoaded={isLoaded}
             savedMovies={getLikedMovies}
