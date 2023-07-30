@@ -104,9 +104,10 @@ function MoviesCard({
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          // const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-          // const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
-          // localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+          const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+          localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+          console.log('eto spisok posle dislayka', JSON.parse(localStorage.getItem('likedMovies')));
         })
         .catch((err) => console.log(err));
     }
