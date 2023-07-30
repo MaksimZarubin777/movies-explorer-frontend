@@ -112,9 +112,15 @@ function App() {
   const handleMovieDelete = (movieId) => {
     MainApi.deleteMovie(movieId)
       .then(() => {
-        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
-        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+        // Обновление состояния likedMovies после успешного удаления
+        setLikedMovies((prevLikedMovies) =>
+          prevLikedMovies.filter((movie) => movie.movieId !== movieId)
+        );
+  
+        // Обновление состояния filteredLikedMovies, если оно используется
+        setFilteredLikedMovies((prevFilteredMovies) =>
+          prevFilteredMovies.filter((movie) => movie.movieId !== movieId)
+        );
       })
       .catch((err) => console.log(err));
   };
