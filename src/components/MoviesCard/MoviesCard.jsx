@@ -11,7 +11,6 @@ function MoviesCard({
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
-  const [localStorageUpdated, setLocalStorageUpdated] = useState(false);
 
   const handleClick = () => {
     if (film.trailerLink) {
@@ -39,7 +38,7 @@ function MoviesCard({
     if (currentPath !== '/saved-movies') {
       checkIsFilmLiked();
     }
-  }, [likedMovies, localStorageUpdated]);
+  }, [likedMovies]);
 
   // функция удаления лайка
   const filmLikeDelete = () => {
@@ -97,7 +96,6 @@ function MoviesCard({
           const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
           localLikedMovies.push(movie);
           localStorage.setItem('likedMovies', JSON.stringify(localLikedMovies));
-          setLocalStorageUpdated(true);
         })
         .catch((err) => {
           console.log(err);
@@ -105,7 +103,9 @@ function MoviesCard({
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          savedMovies();
+          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+          const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+          localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
         })
         .catch((err) => console.log(err));
     }
