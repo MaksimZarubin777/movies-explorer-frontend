@@ -43,6 +43,10 @@ function MoviesCard({
   // функция удаления лайка
   const filmLikeDelete = () => {
     handleMovieDelete(film._id);
+    const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+    const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+    localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+    console.log('eto spisok posle delete', JSON.parse(localStorage.getItem('likedMovies')));
   };
 
   // функция конвертации минут в часы

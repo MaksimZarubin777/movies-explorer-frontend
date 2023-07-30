@@ -111,11 +111,6 @@ function App() {
   // функция удаления лайка
   const handleMovieDelete = (movieId) => {
     MainApi.deleteMovie(movieId)
-      .then(() => {
-        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
-        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
-      })
       .catch((err) => console.log(err));
   };
 
