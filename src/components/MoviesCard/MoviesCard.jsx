@@ -7,7 +7,7 @@ function MoviesCard({
   film,
   savedMovies,
   likedMovies,
-  handleMovieDelete,
+  // handleMovieDelete,
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
@@ -40,9 +40,20 @@ function MoviesCard({
     }
   }, [likedMovies]);
 
+  // // функция удаления лайка
+  // const filmLikeDelete = () => {
+  //   handleMovieDelete(film._id);
+  // };
+
   // функция удаления лайка
-  const filmLikeDelete = () => {
-    handleMovieDelete(film._id);
+  const handleMovieDelete = (movieId) => {
+    MainApi.deleteMovie(movieId)
+      .then(() => {
+        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+      })
+      .catch((err) => console.log(err));
   };
 
   // функция конвертации минут в часы
@@ -116,7 +127,7 @@ function MoviesCard({
         <img src={currentPath === '/saved-movies' ? film.image : BASE_URL + film.image.url} alt='' className='movies-card__img' onClick={handleClick}></img>
         <h3 className='movies-card__title'>{film.nameRU}</h3>
         {currentPath === '/saved-movies' ? (
-          <span className='movies-card__delete' onClick={filmLikeDelete}/>
+          <span className='movies-card__delete' onClick={handleMovieDelete}/>
         ) : (
           <span className={isLikeClicked ? 'movies-card__like movies-card__like_on' : 'movies-card__like movies-card__like_off'} onClick={handleIsLiked}/>
         )}
