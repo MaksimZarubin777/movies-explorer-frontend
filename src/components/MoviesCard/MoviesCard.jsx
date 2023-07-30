@@ -47,10 +47,9 @@ function MoviesCard({
       .then((deletedFilm) => {
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
         const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
-        console.log('updated', updatedLikedMovies);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+        setLikedMovies(updatedLikedMovies);
       })
-      console.log('eto spisok posle delete', JSON.parse(localStorage.getItem('likedMovies')));
   };
 
   // функция конвертации минут в часы
