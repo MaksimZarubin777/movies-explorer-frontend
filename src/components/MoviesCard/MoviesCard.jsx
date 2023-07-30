@@ -44,12 +44,11 @@ function MoviesCard({
   const filmLikeDelete = () => {
     MainApi.deleteMovie(film._id)
       .then((film) => {
-        console.log('deleted', film);
+        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== film._id);
+        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+        console.log('eto spisok posle delete', JSON.parse(localStorage.getItem('likedMovies')));
       })
-    const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-    const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== film._id);
-    localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
-    console.log('eto spisok posle delete', JSON.parse(localStorage.getItem('likedMovies')));
   };
 
   // функция конвертации минут в часы
