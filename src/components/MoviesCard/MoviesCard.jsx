@@ -42,7 +42,7 @@ function MoviesCard({
 
   // функция удаления лайка
   const filmLikeDelete = () => {
-    handleMovieDelete(film._id, id);
+    handleMovieDelete(film._id);
   };
 
   // функция конвертации минут в часы
