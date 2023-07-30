@@ -112,7 +112,9 @@ function App() {
   const handleMovieDelete = (movieId) => {
     MainApi.deleteMovie(movieId)
       .then(() => {
-        getLikedMovies();
+        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
       })
       .catch((err) => console.log(err));
   };
@@ -132,6 +134,7 @@ function App() {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
+      localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
   };
