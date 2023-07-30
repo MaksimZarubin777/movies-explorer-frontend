@@ -108,11 +108,11 @@ function App() {
     }
   }, [loggedIn]);
 
-  // функция удаления лайка
-  const handleMovieDelete = (movieId) => {
-    MainApi.deleteMovie(movieId)
-      .catch((err) => console.log(err));
-  };
+  // // функция удаления лайка
+  // const handleMovieDelete = (movieId) => {
+  //   MainApi.deleteMovie(movieId)
+  //     .catch((err) => console.log(err));
+  // };
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
@@ -355,7 +355,7 @@ function App() {
           handleSearch={handleSearch}
           likedMovies={isLikedSearchPerformed ? JSON.parse(localStorage.getItem('filteredLikedMovies')) : JSON.parse(localStorage.getItem('likedMovies'))}
           isLoaded={isLoaded}
-          onDelete={handleMovieDelete}
+          // onDelete={handleMovieDelete}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
             />}
