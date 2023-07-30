@@ -89,7 +89,11 @@ function MoviesCard({
         nameRU,
         nameEN,
       })
-        .then(() => savedMovies())
+        .then((movie) => {
+          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+          localLikedMovies.push(movie);
+          localStorage
+        })
         .catch((err) => {
           console.log(err);
         });

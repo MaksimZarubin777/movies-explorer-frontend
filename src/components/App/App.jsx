@@ -85,7 +85,7 @@ function App() {
       .then((data) => {
         setLikedMovies(data.data);
         setFilteredLikedMovies(data.data);
-        localStorage.setItem('likedMovies', JSON.stringify(data));
+        localStorage.setItem('likedMovies', JSON.stringify(data.data));
         setisLoaded(true);
       })
       .catch((err) => console.log(err));
