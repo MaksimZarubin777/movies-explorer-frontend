@@ -42,13 +42,10 @@ function MoviesCard({
 
   // функция удаления лайка
   const filmLikeDelete = () => {
-    console.log('deleted');
-    console.log('film', film);
-    console.log('film_id', film._id);
-    // MainApi.deleteMovie(film._id)
-    //   .then((film) => {
-    //     console.log('deleted', film);
-    //   })
+    MainApi.deleteMovie(film._id)
+      .then((film) => {
+        console.log('deleted', film);
+      })
     // const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
     // const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== film._id);
     // localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
