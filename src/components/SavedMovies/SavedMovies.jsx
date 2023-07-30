@@ -18,7 +18,7 @@ function SavedMovies({
     />
       {isLoaded ? (
         <MoviesCardList
-          films={likedMovies}
+          films={JSON.parse(localStorage.getItem('likedMovies')) || []}
           handleMovieDelete={onDelete}
       />
       ) : null}
