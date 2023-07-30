@@ -9,7 +9,6 @@ function SavedMovies({
   handleSubmitSaved,
   setIsCheckBoxActive,
 }) {
-  console.log(likedMovies);
   return (
     <>
       <SearchForm

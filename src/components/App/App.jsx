@@ -112,19 +112,8 @@ function App() {
   const handleMovieDelete = (movieId) => {
     MainApi.deleteMovie(movieId)
       .then(() => {
-        // Удаление фильма из стейта likedMovies
-        setLikedMovies((prevLikedMovies) =>
-          prevLikedMovies.filter((movie) => movie.movieId !== movieId)
-        );
-  
-        // Удаление фильма из стейта filteredLikedMovies, если он есть
-        setFilteredLikedMovies((prevFilteredLikedMovies) =>
-          prevFilteredLikedMovies.filter((movie) => movie.movieId !== movieId)
-        );
-  
-        // Также удалите фильм из localStorage, если он там сохранен
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== movieId);
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
       })
       .catch((err) => console.log(err));
