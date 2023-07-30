@@ -43,6 +43,8 @@ function MoviesCard({
   // функция удаления лайка
   const filmLikeDelete = () => {
     console.log('deleted');
+    console.log('film', film);
+    console.log('film_id', film._id);
     // MainApi.deleteMovie(film._id)
     //   .then((film) => {
     //     console.log('deleted', film);
