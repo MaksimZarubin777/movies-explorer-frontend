@@ -5,11 +5,11 @@ function SavedMovies({
   handleSearch,
   likedMovies,
   isLoaded,
-  onDelete,
   handleSubmitSaved,
   setIsCheckBoxActive,
   setLikedMovies,
   setFilteredLikedMovies,
+  isSearchPerformed,
 }) {
   return (
     <>
@@ -24,6 +24,7 @@ function SavedMovies({
           handleMovieDelete={onDelete}
           setLikedMovies={setLikedMovies}
           setFilteredLikedMovies={setFilteredLikedMovies}
+          isSearchPerformed={isSearchPerformed}
       />
       ) : null}
     </>

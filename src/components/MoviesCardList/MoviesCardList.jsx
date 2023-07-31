@@ -99,6 +99,7 @@ function MoviesCardList({
             handleMovieDelete={handleMovieDelete}
             setLikedMovies={setLikedMovies}
             setFilteredLikedMovies={setFilteredLikedMovies}
+            isSearchPerformed={isSearchPerformed}
           />)
         ) : (
           isSearchPerformed && <p>Ничего не найдено</p>
