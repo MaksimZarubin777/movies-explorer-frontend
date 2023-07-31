@@ -11,6 +11,7 @@ function SavedMovies({
   setFilteredLikedMovies,
   isSearchPerformed,
 }) {
+  console.log('11', likedMovies);
   return (
     <>
       <SearchForm
