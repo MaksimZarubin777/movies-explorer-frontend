@@ -235,6 +235,7 @@ function App() {
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
       setIsPopupLoginOpen(true);
+      getLikedMovies();
       navigate('/movies', { replace: true });
     } catch (err) {
       setIsPopupLoginOpen(true);
