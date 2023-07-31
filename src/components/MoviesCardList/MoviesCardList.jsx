@@ -35,6 +35,7 @@ function MoviesCardList({
   const [displayedFilms, setDisplayedFilms] = useState([]);
   // устанавливаем шаг добавления новых фильмов в зависимости от размера окна
   const [gap, setGap] = useState(0);
+  const currentPath = window.location.pathname;
 
   // при изменении размера окна устанавливаем windowWidth равным размеру окна
   useEffect(() => {
@@ -101,7 +102,7 @@ function MoviesCardList({
             isSearchPerformed={isSearchPerformed}
           />)
         ) : (
-          isSearchPerformed && <p>Ничего не найдено</p>
+          isSearchPerformed && currentPath !== '/saved-movies' && (<p>Ничего не найдено</p>)
         ))}
       </div>
       {isSearchPerformed && filmsRemain > 0 && (
