@@ -355,7 +355,7 @@ function App() {
           {<ProtectedRouteElement element={SavedMovies}
           isLoggedIn={loggedIn}
           handleSearch={handleSearch}
-          likedMovies={isLikedSearchPerformed ? JSON.parse(localStorage.getItem('filteredLikedMovies')) : JSON.parse(localStorage.getItem('likedMovies'))}
+          likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
           isLoaded={isLoaded}
           isLoading={isLoading}
           isSearchPerformed={isSearchPerformed}
