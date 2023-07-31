@@ -7,7 +7,6 @@ function MoviesCard({
   film,
   savedMovies,
   likedMovies,
-  handleMovieDelete,
   setLikedMovies,
   setFilteredLikedMovies,
   isSearchPerformed,

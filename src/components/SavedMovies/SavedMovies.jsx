@@ -21,7 +21,6 @@ function SavedMovies({
       {isLoaded ? (
         <MoviesCardList
           films={likedMovies}
-          handleMovieDelete={onDelete}
           setLikedMovies={setLikedMovies}
           setFilteredLikedMovies={setFilteredLikedMovies}
           isSearchPerformed={isSearchPerformed}

@@ -21,7 +21,6 @@ function MoviesCardList({
   isSearchPerformed,
   savedMovies,
   likedMovies,
-  handleMovieDelete,
   setLikedMovies,
   setFilteredLikedMovies,
 }) {
@@ -96,7 +95,6 @@ function MoviesCardList({
             film={film}
             savedMovies={savedMovies}
             likedMovies={likedMovies}
-            handleMovieDelete={handleMovieDelete}
             setLikedMovies={setLikedMovies}
             setFilteredLikedMovies={setFilteredLikedMovies}
             isSearchPerformed={isSearchPerformed}
