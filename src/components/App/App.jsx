@@ -46,6 +46,7 @@ function App() {
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(false);
 
   // popups
   const [isPopupLoginOpen, setIsPopupLoginOpen] = useState(false);
@@ -87,6 +88,7 @@ function App() {
         setFilteredLikedMovies(data.data);
         localStorage.setItem('likedMovies', JSON.stringify(data.data));
         setisLoaded(true);
+        setIsLikedMoviesLoaded(true); 
       })
       .catch((err) => console.log(err));
   };
@@ -348,8 +350,9 @@ function App() {
           <Footer />
           </>
         }/>
-
-        <Route path="/saved-movies" element={
+        
+        {isLikedMoviesLoaded && (
+          <Route path="/saved-movies" element={
           <>
           <Header isLoggedIn={loggedIn}/>
           {<ProtectedRouteElement element={SavedMovies}
@@ -366,6 +369,7 @@ function App() {
           <Footer />
           </>
         }/>
+        )}
 
         <Route path="/profile" element={
           <>
