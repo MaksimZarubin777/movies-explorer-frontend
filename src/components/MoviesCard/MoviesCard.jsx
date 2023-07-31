@@ -9,6 +9,7 @@ function MoviesCard({
   likedMovies,
   handleMovieDelete,
   setLikedMovies,
+  setFilteredLikedMovies,
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
@@ -49,6 +50,7 @@ function MoviesCard({
         const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
         setLikedMovies(updatedLikedMovies);
+        setFilteredLikedMovies(updatedLikedMovies);
       })
   };
 
@@ -85,6 +87,7 @@ function MoviesCard({
     } = film;
     const filmToLike = likedMovies && likedMovies
       .find((movie) => movie.movieId === id);
+
     if (!filmToLike) {
       MainApi.saveMovie({
         country,

@@ -357,6 +357,7 @@ function App() {
           isLoaded={isLoaded}
           // onDelete={handleMovieDelete}
           setLikedMovies={setLikedMovies}
+          setFilteredLikedMovies={setFilteredLikedMovies}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
             />}

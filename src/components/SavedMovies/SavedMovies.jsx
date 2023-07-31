@@ -9,6 +9,7 @@ function SavedMovies({
   handleSubmitSaved,
   setIsCheckBoxActive,
   setLikedMovies,
+  setFilteredLikedMovies,
 }) {
   return (
     <>
@@ -22,6 +23,7 @@ function SavedMovies({
           films={likedMovies}
           handleMovieDelete={onDelete}
           setLikedMovies={setLikedMovies}
+          setFilteredLikedMovies={setFilteredLikedMovies}
       />
       ) : null}
     </>
