@@ -46,17 +46,15 @@ function MoviesCard({
   const filmLikeDelete = () => {
     MainApi.deleteMovie(film._id)
       .then((deletedFilm) => {
-        if (isSearchPerformed) {
-          const filteredLocalLikedMovies = JSON.parse(localStorage.getItem('filteredLikedMovies')) || [];
-          const updatedFilteredLikedMovies = filteredLocalLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
-          localStorage.setItem('filteredLikedMovies', JSON.stringify(updatedFilteredLikedMovies));
-          setFilteredLikedMovies(updatedFilteredLikedMovies);
-        } else {
-          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-          const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
-          localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
-          setLikedMovies(updatedLikedMovies);
-        }
+        const filteredLocalLikedMovies = JSON.parse(localStorage.getItem('filteredLikedMovies')) || [];
+        const updatedFilteredLikedMovies = filteredLocalLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
+        localStorage.setItem('filteredLikedMovies', JSON.stringify(updatedFilteredLikedMovies));
+        setFilteredLikedMovies(updatedFilteredLikedMovies);
+
+        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+        const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
+        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+        setLikedMovies(updatedLikedMovies);
       })
   };
 
