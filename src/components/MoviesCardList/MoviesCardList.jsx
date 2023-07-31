@@ -24,6 +24,7 @@ function MoviesCardList({
   setLikedMovies,
   setFilteredLikedMovies,
 }) {
+  console.log(isSearchPerformed);
   // установаливаем windowWidth изначально равным размеру окна
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   // устанавливаем количество отображаемых фильмов
