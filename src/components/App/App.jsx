@@ -218,6 +218,7 @@ function App() {
       await MainApi.register(email, password, name);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
+      getLikedMovies();
       setIsPopupRegisterOpen(true);
       navigate('/movies', { relace: true });
     } catch (err) {
