@@ -13,6 +13,7 @@ function MoviesCard({
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [isLikeError, setIsLikeError] = useState(false);
 
   const handleClick = () => {
     if (film.trailerLink) {
@@ -113,6 +114,7 @@ function MoviesCard({
           setLikedMovies(localLikedMovies);
         })
         .catch((err) => {
+          setIsLikeError(true);
           console.log(err);
         });
     } else if (filmToLike) {
@@ -123,7 +125,10 @@ function MoviesCard({
           localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
           setLikedMovies(updatedLikedMovies);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setIsLikeError(true);
+          console.log(err);
+        });
     }
   };
 
@@ -134,7 +139,7 @@ function MoviesCard({
         {currentPath === '/saved-movies' ? (
           <span className='movies-card__delete' onClick={filmLikeDelete}/>
         ) : (
-          <span className={isLikeClicked ? 'movies-card__like movies-card__like_on' : 'movies-card__like movies-card__like_off'} onClick={handleIsLiked}/>
+          <span className={isLikeClicked && !isLikeError ? 'movies-card__like movies-card__like_on' : 'movies-card__like movies-card__like_off'} onClick={handleIsLiked}/>
         )}
         <p className='movies-card__duration'>{convertMinutesToHours(film.duration)}</p>
     </div>

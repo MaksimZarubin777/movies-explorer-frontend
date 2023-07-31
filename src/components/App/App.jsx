@@ -24,6 +24,7 @@ import PopupLogin from '../Popup/PopupLogin.jsx';
 import PopupRegester from '../Popup/PopupRegester.jsx';
 import PopupProfileUpdate from '../Popup/PopupProfileUpdate.jsx';
 import PopupNoInput from '../Popup/PopupNoInput.jsx';
+import { SHORT_MOVIES_DURATION } from '../../vendor/constants';
 
 function App() {
   // стейт записи логина
@@ -109,12 +110,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  // // функция удаления лайка
-  // const handleMovieDelete = (movieId) => {
-  //   MainApi.deleteMovie(movieId)
-  //     .catch((err) => console.log(err));
-  // };
-
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
@@ -123,7 +118,7 @@ function App() {
 
     if (isCheckBoxActive) {
       // Фильтрация по активному состоянию чекбокса и длительности
-      searchedFilms = searchedFilms.filter((film) => film.duration <= 40);
+      searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
 
     if (location.pathname === '/movies') {
@@ -278,7 +273,6 @@ function App() {
   const checkIsLoggedIn = () => {
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      // navigate(location.pathname, { replace: true });
       setLoggedIn(true);
     }
     setIsTokenChecked(true);

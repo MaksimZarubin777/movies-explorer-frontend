@@ -16,4 +16,6 @@ export const GAP_EXTRA_SMALL = 2;
 
 export const MINUTES_PER_HOUR = 60;
 
+export const SHORT_MOVIES_DURATION = 40;
+
 export const BASE_URL = 'https://api.nomoreparties.co';
