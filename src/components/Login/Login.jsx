@@ -15,7 +15,7 @@ function Login({ onSubmit, isSubmitting, isLoggedIn }) {
     if (isLoggedIn) {
       navigate('/', { replace: true });
     }
-  }, [])
+  }, []);
 
   return (
     <div className='login'>

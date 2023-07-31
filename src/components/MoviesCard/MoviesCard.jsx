@@ -5,11 +5,9 @@ import { BASE_URL, MINUTES_PER_HOUR } from '../../vendor/constants';
 
 function MoviesCard({
   film,
-  savedMovies,
   likedMovies,
   setLikedMovies,
   setFilteredLikedMovies,
-  isSearchPerformed,
 }) {
   const currentPath = window.location.pathname;
   const [isLikeClicked, setIsLikeClicked] = useState(false);
@@ -27,7 +25,8 @@ function MoviesCard({
       .some((likedFilm) => likedFilm.movieId === film.id);
 
     const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-    const isFilmLikedInLocalStorage = localLikedMovies.some((likedFilm) => likedFilm.movieId === film.id);  
+    const isFilmLikedInLocalStorage = localLikedMovies
+      .some((likedFilm) => likedFilm.movieId === film.id);
 
     if (isFilmLiked || isFilmLikedInLocalStorage) {
       setIsLikeClicked(true);
@@ -48,15 +47,17 @@ function MoviesCard({
     MainApi.deleteMovie(film._id)
       .then((deletedFilm) => {
         const filteredLocalLikedMovies = JSON.parse(localStorage.getItem('filteredLikedMovies')) || [];
-        const updatedFilteredLikedMovies = filteredLocalLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
+        const updatedFilteredLikedMovies = filteredLocalLikedMovies
+          .filter((movie) => movie._id !== deletedFilm.data._id);
         localStorage.setItem('filteredLikedMovies', JSON.stringify(updatedFilteredLikedMovies));
         setFilteredLikedMovies(updatedFilteredLikedMovies);
 
         const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-        const updatedLikedMovies = localLikedMovies.filter((movie) => movie._id !== deletedFilm.data._id);
+        const updatedLikedMovies = localLikedMovies
+          .filter((movie) => movie._id !== deletedFilm.data._id);
         localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
         setLikedMovies(updatedLikedMovies);
-      })
+      });
   };
 
   // функция конвертации минут в часы

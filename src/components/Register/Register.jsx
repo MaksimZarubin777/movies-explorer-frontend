@@ -10,7 +10,7 @@ function Register({ onSubmit, isSubmitting, isLoggedIn }) {
     if (isLoggedIn) {
       navigate('/', { replace: true });
     }
-  }, [])
+  }, []);
 
   return (
     <div className='register'>
