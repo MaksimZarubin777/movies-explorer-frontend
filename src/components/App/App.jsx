@@ -69,6 +69,7 @@ function App() {
       })
       .catch(() => {
         setLoggedIn(false);
+        setIsSearchPerformed(false);
         localStorage.clear();
         localStorage.removeItem('isLoggedIn');
         navigate('/', { replace: true });
@@ -251,6 +252,7 @@ function App() {
       .then(() => {
         localStorage.clear();
         setLoggedIn(false);
+        setIsSearchPerformed(false);
         navigate('/', { replace: true });
       })
       .catch((err) => console.log(err));
