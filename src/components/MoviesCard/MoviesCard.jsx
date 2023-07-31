@@ -103,7 +103,7 @@ function MoviesCard({
           const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
           localLikedMovies.push(movie.data);
           localStorage.setItem('likedMovies', JSON.stringify(localLikedMovies));
-          console.log('eto spisok posle layka', JSON.parse(localStorage.getItem('likedMovies')));
+          setLikedMovies(localLikedMovies);
         })
         .catch((err) => {
           console.log(err);
@@ -114,7 +114,7 @@ function MoviesCard({
           const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
           const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
           localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
-          console.log('eto spisok posle dislayka', JSON.parse(localStorage.getItem('likedMovies')));
+          setLikedMovies(updatedLikedMovies);
         })
         .catch((err) => console.log(err));
     }
