@@ -111,6 +111,11 @@ function App() {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+    // При каждом изменении location.pathname сбрасываем значение isCheckBoxActiveOnSavedMovies в false
+    setIsCheckBoxActiveOnSavedMovies(false);
+  }, [location.pathname]);
+
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
 
