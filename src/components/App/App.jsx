@@ -112,10 +112,7 @@ function App() {
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
-    if (location.pathname === '/saved-movies') {
-      searchData = '';
-      return searchData;
-    }
+
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
@@ -133,6 +130,18 @@ function App() {
       setIsLikedSearchPerformed(true);
     }
   };
+
+  const filterFilmsWithCheckbox = (filmsList) => {
+    let searchedFilms = filmsList ? [...filmsList] : [];
+
+    if (isCheckBoxActive) {
+      // Фильтрация по активному состоянию чекбокса и длительности
+      searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
+    }
+
+    setFilteredLikedMovies(searchedFilms);
+    localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
+  }
 
   // функция поиска по лайкнутым фильмам
   const handleSubmitSaved = (e, savedSearchValue) => {
@@ -171,7 +180,7 @@ function App() {
     if (location.pathname === '/movies') {
       filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
     } else {
-      filterFilms(likedMovies, searchValue);
+      filterFilmsWithCheckbox(likedMovies);
     }
   }, [isCheckBoxActive]);
 
