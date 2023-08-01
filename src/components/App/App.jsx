@@ -112,6 +112,10 @@ function App() {
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
+    if (location.pathname === '/saved-movies') {
+      searchData = '';
+      return searchData;
+    }
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
