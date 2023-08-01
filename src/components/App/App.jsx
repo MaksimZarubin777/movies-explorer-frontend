@@ -132,6 +132,7 @@ function App() {
   };
 
   const filterFilmsWithCheckbox = (filmsList) => {
+    console.log('filter');
     let searchedFilms = filmsList ? [...filmsList] : [];
 
     if (isCheckBoxActive) {
