@@ -132,17 +132,14 @@ function App() {
   };
 
   const filterFilmsWithCheckbox = (filmsList) => {
-    console.log('filter');
     let searchedFilms = filmsList ? [...filmsList] : [];
-
-    console.log('is', isCheckBoxActive);
     if (isCheckBoxActive) {
       // Фильтрация по активному состоянию чекбокса и длительности
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
-
     setFilteredLikedMovies(searchedFilms);
     localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
+    setIsLikedSearchPerformed(true);
   }
 
   // функция поиска по лайкнутым фильмам
