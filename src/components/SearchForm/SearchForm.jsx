@@ -13,7 +13,7 @@ function SearchForm({
   const [searchValue, setSearchValue] = useState('');
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
   const [checkBoxStatusOnSavedMovies, setCheckBoxStatusOnSavedMovies] = useState(false);
-  console.log(checkBoxStatusOnSavedMovies);
+
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
