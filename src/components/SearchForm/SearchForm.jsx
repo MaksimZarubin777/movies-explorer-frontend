@@ -52,7 +52,13 @@ function SearchForm({
       }
       setCheckBoxStatus(savedCheckBoxStatus);
     } 
-    setCheckBoxStatusOnSavedMovies(false);
+
+    return () => {
+      if (location.pathname === '/saved-movies') {
+        // Сбрасываем значение checkBoxStatusOnSavedMovies в false при размонтировании компонента
+        setCheckBoxStatusOnSavedMovies(false);
+      }
+    };
   }, [location.pathname]);
 
   return (
