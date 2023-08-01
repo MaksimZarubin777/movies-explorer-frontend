@@ -20,7 +20,10 @@ function SearchForm({
   const handleCheckBox = (e) => {
     setIsCheckBoxActive(e.target.checked);
     setCheckBoxStatus(e.target.checked);
-    localStorage.setItem('checkBoxStatus', e.target.checked);
+    if (location.pathname === '/movies') {
+      localStorage.setItem('checkBoxStatus', e.target.checked);
+    }
+    
   };
 
   const handleSubmitSearch = (e) => {
