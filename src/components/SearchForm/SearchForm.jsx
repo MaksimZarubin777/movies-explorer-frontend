@@ -51,7 +51,10 @@ function SearchForm({
         setSearchValue(savedSearchValue);
       }
       setCheckBoxStatus(savedCheckBoxStatus);
-    } 
+    } else {
+      // Когда компонент монтируется на странице /saved-movies, сбрасываем статус чекбокса в false
+      setCheckBoxStatusOnSavedMovies(false);
+    }
   }, [location.pathname]);
 
   return (
