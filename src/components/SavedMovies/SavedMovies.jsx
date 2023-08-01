@@ -12,6 +12,7 @@ function SavedMovies({
   setLikedMovies,
   setFilteredLikedMovies,
   isSearchPerformed,
+  setIsCheckBoxActiveOnSavedMovies,
 }) {
   return (
     <>
