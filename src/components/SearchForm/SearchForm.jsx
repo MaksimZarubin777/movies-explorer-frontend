@@ -7,10 +7,12 @@ function SearchForm({
   handleSubmitSaved,
   setIsCheckBoxActive,
   isCheckBoxActive,
+  setIsCheckBoxActiveOnSavedMovies,
 }) {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
+  const [checkBoxStatusOnSavedMovies, setCheckBoxStatusOnSavedMovies] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -18,11 +20,13 @@ function SearchForm({
 
   // устанавливем статус чекбокса
   const handleCheckBox = (e) => {
-    setIsCheckBoxActive(e.target.checked);
-    setCheckBoxStatus(e.target.checked);
     if (location.pathname === '/movies') {
+      setIsCheckBoxActive(e.target.checked);
+      setCheckBoxStatus(e.target.checked);
       localStorage.setItem('checkBoxStatus', e.target.checked);
     } else {
+      setIsCheckBoxActiveOnSavedMovies(e.target.checked);
+      setCheckBoxStatusOnSavedMovies(e.target.checked);
       localStorage.setItem('checkBoxStatusSavedMovies', e.target.checked);
     }
   };
@@ -67,7 +71,7 @@ function SearchForm({
         </form>
         <div className='search-form__filter'>
           <label className='switch'>
-            <input type='checkbox' checked={checkBoxStatus} className='search-form__filter_checkbox' onChange={handleCheckBox}/>
+            <input type='checkbox' checked={location.pathname === '/movies' ? checkBoxStatus : checkBoxStatusOnSavedMovies} className='search-form__filter_checkbox' onChange={handleCheckBox}/>
             <span className='slider'></span>
           </label>
           <p className='search-form__filter_text'>Короткометражки</p>

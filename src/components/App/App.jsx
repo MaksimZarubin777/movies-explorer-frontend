@@ -45,6 +45,7 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isLikedSearchPerformed, setIsLikedSearchPerformed] = useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
+  const [isCheckBoxActiveOnSavedMovies, setIsCheckBoxActiveOnSavedMovies] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -133,7 +134,7 @@ function App() {
 
   const filterFilmsWithCheckbox = (filmsList) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
-    if (isCheckBoxActive) {
+    if (isCheckBoxActiveOnSavedMovies) {
       // Фильтрация по активному состоянию чекбокса и длительности
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
@@ -182,7 +183,7 @@ function App() {
     } else {
       filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')));
     }
-  }, [isCheckBoxActive]);
+  }, [isCheckBoxActive, isCheckBoxActiveOnSavedMovies]);
 
   // функция поиска фильма
   const handleSearch = (e) => {
@@ -371,6 +372,7 @@ function App() {
           setFilteredLikedMovies={setFilteredLikedMovies}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
+          setIsCheckBoxActiveOnSavedMovies={setIsCheckBoxActiveOnSavedMovies}
             />}
           <Footer />
           </>
