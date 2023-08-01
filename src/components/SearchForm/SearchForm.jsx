@@ -54,7 +54,7 @@ function SearchForm({
       setCheckBoxStatus(savedCheckBoxStatus);
     } else {
       const savedCheckBoxStatusAtSavedMovies = JSON.parse(localStorage.getItem('checkBoxStatusSavedMovies'));
-      setCheckBoxStatus(savedCheckBoxStatusAtSavedMovies);
+      setCheckBoxStatusOnSavedMovies(savedCheckBoxStatusAtSavedMovies);
     }
   }, [location.pathname]);
 
