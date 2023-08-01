@@ -19,6 +19,7 @@ function SavedMovies({
         handleSubmit={handleSearch}
         handleSubmitSaved={handleSubmitSaved}
         setIsCheckBoxActive={setIsCheckBoxActive}
+        setIsCheckBoxActiveOnSavedMovies={setIsCheckBoxActiveOnSavedMovies}
       />
       {isLoading ? (<Preloader />) : null}
       {!isLoading && isLoaded ? (

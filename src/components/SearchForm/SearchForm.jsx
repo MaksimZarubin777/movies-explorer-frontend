@@ -25,12 +25,9 @@ function SearchForm({
       setCheckBoxStatus(e.target.checked);
       localStorage.setItem('checkBoxStatus', e.target.checked);
     } else {
-      console.log('e', e);
-      console.log('e.targ', e.target.checked);
       setIsCheckBoxActiveOnSavedMovies(e.target.checked);
       setCheckBoxStatusOnSavedMovies(e.target.checked);
       localStorage.setItem('checkBoxStatusSavedMovies', e.target.checked);
-      console.log('isact', setIsCheckBoxActiveOnSavedMovies);
     }
   };
 
