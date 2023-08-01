@@ -22,8 +22,9 @@ function SearchForm({
     setCheckBoxStatus(e.target.checked);
     if (location.pathname === '/movies') {
       localStorage.setItem('checkBoxStatus', e.target.checked);
+    } else {
+      localStorage.setItem('checkBoxStatusSavedMovies', e.target.checked);
     }
-    
   };
 
   const handleSubmitSearch = (e) => {
@@ -47,6 +48,9 @@ function SearchForm({
         setSearchValue(savedSearchValue);
       }
       setCheckBoxStatus(savedCheckBoxStatus);
+    } else {
+      const savedCheckBoxStatusAtSavedMovies = JSON.parse(localStorage.getItem('checkBoxStatusSavedMovies'));
+      setCheckBoxStatus(savedCheckBoxStatusAtSavedMovies);
     }
   }, [location.pathname]);
 
