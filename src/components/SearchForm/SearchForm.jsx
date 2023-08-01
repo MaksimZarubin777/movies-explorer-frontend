@@ -13,7 +13,7 @@ function SearchForm({
   const [searchValue, setSearchValue] = useState('');
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
   const [checkBoxStatusOnSavedMovies, setCheckBoxStatusOnSavedMovies] = useState(false);
-
+  console.log(checkBoxStatusOnSavedMovies);
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -52,13 +52,6 @@ function SearchForm({
       }
       setCheckBoxStatus(savedCheckBoxStatus);
     } 
-
-    return () => {
-      if (location.pathname === '/saved-movies') {
-        // Сбрасываем значение checkBoxStatusOnSavedMovies в false при размонтировании компонента
-        setCheckBoxStatusOnSavedMovies(false);
-      }
-    };
   }, [location.pathname]);
 
   return (
