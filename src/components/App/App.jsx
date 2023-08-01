@@ -134,6 +134,8 @@ function App() {
   const filterFilmsWithCheckbox = (filmsList) => {
     console.log('filter');
     let searchedFilms = filmsList ? [...filmsList] : [];
+    console.log('filteredfilms', filmsList);
+    console.log('searchedfilms', searchedFilms);
 
     if (isCheckBoxActive) {
       // Фильтрация по активному состоянию чекбокса и длительности
