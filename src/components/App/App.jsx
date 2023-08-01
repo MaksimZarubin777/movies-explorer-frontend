@@ -180,7 +180,7 @@ function App() {
     if (location.pathname === '/movies') {
       filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
     } else {
-      filterFilmsWithCheckbox(likedMovies);
+      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')));
     }
   }, [isCheckBoxActive]);
 
