@@ -27,7 +27,6 @@ function SearchForm({
     } else {
       setIsCheckBoxActiveOnSavedMovies(e.target.checked);
       setCheckBoxStatusOnSavedMovies(e.target.checked);
-      localStorage.setItem('checkBoxStatusSavedMovies', e.target.checked);
     }
   };
 
@@ -53,6 +52,7 @@ function SearchForm({
       }
       setCheckBoxStatus(savedCheckBoxStatus);
     } 
+    setCheckBoxStatusOnSavedMovies(false);
   }, [location.pathname]);
 
   return (
