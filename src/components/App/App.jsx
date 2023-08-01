@@ -117,10 +117,10 @@ function App() {
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
 
-    // if (isCheckBoxActive) {
-    //   // Фильтрация по активному состоянию чекбокса и длительности
-    //   searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
-    // }
+    if (isCheckBoxActive) {
+      // Фильтрация по активному состоянию чекбокса и длительности
+      searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
+    }
 
     if (location.pathname === '/movies') {
       setFilteredFilms(searchedFilms);
@@ -138,13 +138,9 @@ function App() {
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
     
-    if (location.pathname === '/movies') {
-      setFilteredFilms(searchedFilms);
-    } else {
-      setFilteredLikedMovies(searchedFilms);
-      localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
-      setIsLikedSearchPerformed(true);
-    }
+    setFilteredLikedMovies(searchedFilms);
+    localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
+    setIsLikedSearchPerformed(true);
   }
 
   // функция поиска по лайкнутым фильмам
@@ -182,7 +178,7 @@ function App() {
   // хук фильтрации фильмов по активации чекбокса
   useEffect(() => {
     if (location.pathname === '/movies') {
-      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('films')));
+      filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
     } else {
       filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')));
     }
