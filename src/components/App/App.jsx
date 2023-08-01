@@ -167,6 +167,8 @@ function App() {
       if (savedFilms) {
         setFilms(JSON.parse(savedFilms));
       }
+    } else {
+      setFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')));
     }
     setIsLikedSearchPerformed(false);
   }, [location.pathname]);
