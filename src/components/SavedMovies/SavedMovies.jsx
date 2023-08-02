@@ -13,6 +13,7 @@ function SavedMovies({
   setFilteredLikedMovies,
   isSearchPerformed,
   setIsCheckBoxActiveOnSavedMovies,
+  setSavedMoviesSearchedValue,
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ function SavedMovies({
         handleSubmitSaved={handleSubmitSaved}
         setIsCheckBoxActive={setIsCheckBoxActive}
         setIsCheckBoxActiveOnSavedMovies={setIsCheckBoxActiveOnSavedMovies}
+        setSavedMoviesSearchedValue={setSavedMoviesSearchedValue}
       />
       {isLoading ? (<Preloader />) : null}
       {!isLoading && isLoaded ? (

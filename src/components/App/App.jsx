@@ -57,9 +57,10 @@ function App() {
   const [isProfileChanged, setisProfileChanged] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMoviesSearchValue, setSavedMoviesSearchedValue] = useState();
 
   const searchValue = localStorage.getItem('searchValue');
-  const savedSearchValue = localStorage.getItem('savedSearchValue');
+  // const savedSearchValue = localStorage.getItem('savedSearchValue');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -188,7 +189,7 @@ function App() {
     if (location.pathname === '/movies') {
       filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
     } else {
-      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')), savedSearchValue);
+      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')), savedMoviesSearchValue);
     }
   }, [isCheckBoxActive, isCheckBoxActiveOnSavedMovies]);
 
@@ -384,6 +385,7 @@ function App() {
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
           setIsCheckBoxActiveOnSavedMovies={setIsCheckBoxActiveOnSavedMovies}
+          setSavedMoviesSearchedValue={setSavedMoviesSearchedValue}
             />}
           <Footer />
           </>

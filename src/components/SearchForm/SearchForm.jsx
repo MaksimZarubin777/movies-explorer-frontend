@@ -8,6 +8,7 @@ function SearchForm({
   setIsCheckBoxActive,
   isCheckBoxActive,
   setIsCheckBoxActiveOnSavedMovies,
+  setSavedMoviesSearchedValue
 }) {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
@@ -37,14 +38,11 @@ function SearchForm({
       localStorage.setItem('isCheckBoxActive', isCheckBoxActive);
       handleSubmit(e);
     } else {
-      localStorage.setItem('savedSearchValue', searchValue.toLowerCase());
+      // localStorage.setItem('savedSearchValue', searchValue.toLowerCase());
+      setSavedMoviesSearchedValue(searchValue.toLowerCase());
       handleSubmitSaved(e, searchValue.toLowerCase());
     }
   };
-
-  useEffect(() => {
-    localStorage.removeItem('savedSearchValue');
-  }, [location.pathname]);
 
   // хук получения данных с локал сторедж
   useEffect(() => {
