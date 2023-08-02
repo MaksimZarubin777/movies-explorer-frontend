@@ -127,7 +127,7 @@ function App() {
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
-    if (isCheckBoxActive) {
+    if (isCheckBoxActive && location.pathname === '/movies') {
       // Фильтрация по активному состоянию чекбокса и длительности
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
