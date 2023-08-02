@@ -160,7 +160,9 @@ function App() {
       setIsPopupNoInputOpen(true);
       setIsLoading(false);
     }
-    setIsCheckBoxActiveOnSavedMovies(false);
+    if (isCheckBoxActiveOnSavedMovies) {
+      filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
+    }
     filterFilms(likedMovies, savedSearchValue);
   };
 
