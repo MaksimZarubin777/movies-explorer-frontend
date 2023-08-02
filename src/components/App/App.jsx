@@ -136,7 +136,7 @@ function App() {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
-      localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
+      // localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
   };
@@ -164,7 +164,7 @@ function App() {
       setIsLoading(false);
     }
     if (isCheckBoxActiveOnSavedMovies) {
-      return filterFilms(filteredLikedMovies), savedSearchValue);
+      return filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
     }
     filterFilms(likedMovies, savedSearchValue);
   };
