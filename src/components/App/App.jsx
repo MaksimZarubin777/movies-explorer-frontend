@@ -160,6 +160,7 @@ function App() {
       setIsPopupNoInputOpen(true);
       setIsLoading(false);
     }
+    setIsCheckBoxActiveOnSavedMovies(false);
     filterFilms(likedMovies, savedSearchValue);
   };
 
