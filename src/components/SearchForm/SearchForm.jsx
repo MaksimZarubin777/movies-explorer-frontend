@@ -42,6 +42,10 @@ function SearchForm({
     }
   };
 
+  useEffect(() => {
+    localStorage.removeItem('savedSearchValue');
+  }, [location.pathname]);
+
   // хук получения данных с локал сторедж
   useEffect(() => {
     if (location.pathname === '/movies') {
