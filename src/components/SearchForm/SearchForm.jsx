@@ -8,7 +8,7 @@ function SearchForm({
   setIsCheckBoxActive,
   isCheckBoxActive,
   setIsCheckBoxActiveOnSavedMovies,
-  setSavedMoviesSearchedValue
+  setSavedMoviesSearchedValue,
 }) {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState('');
@@ -53,7 +53,7 @@ function SearchForm({
         setSearchValue(savedSearchValue);
       }
       setCheckBoxStatus(savedCheckBoxStatus);
-    } 
+    }
   }, [location.pathname]);
 
   return (
