@@ -121,13 +121,9 @@ function App() {
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
-    console.log(filmsList);
-    console.log(searchData);
     let searchedFilms = filmsList ? [...filmsList] : [];
-    console.log(searchedFilms);
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
-    console.log(searchedFilms);
     if (isCheckBoxActive) {
       // Фильтрация по активному состоянию чекбокса и длительности
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
