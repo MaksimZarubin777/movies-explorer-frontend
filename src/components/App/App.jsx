@@ -121,7 +121,8 @@ function App() {
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
-
+    console.log(filmsList);
+    console.log(searchData);
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
