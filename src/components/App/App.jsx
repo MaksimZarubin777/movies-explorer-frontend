@@ -161,6 +161,9 @@ function App() {
       setIsLoading(false);
     }
     if (isCheckBoxActiveOnSavedMovies) {
+      console.log('vy tut');
+      console.log(JSON.parse(localStorage.getItem('filteredLikedMovies')));
+      console.log(savedSearchValue);
       filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
     }
     filterFilms(likedMovies, savedSearchValue);
