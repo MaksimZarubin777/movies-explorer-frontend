@@ -140,9 +140,10 @@ function App() {
 
   const filterFilmsWithCheckbox = (filmsList, searchData) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
-    searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
+    
     if (isCheckBoxActiveOnSavedMovies) {
       // Фильтрация по активному состоянию чекбокса и длительности
+      searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
     
