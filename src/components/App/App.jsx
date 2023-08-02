@@ -116,6 +116,7 @@ function App() {
   useEffect(() => {
     // При каждом изменении location.pathname сбрасываем значение isCheckBoxActiveOnSavedMovies в false
     setIsCheckBoxActiveOnSavedMovies(false);
+    setSavedMoviesSearchedValue();
   }, [location.pathname]);
 
   // функция фильтрации фильмов по поисковому запросу
