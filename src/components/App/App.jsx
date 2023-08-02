@@ -59,6 +59,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const searchValue = localStorage.getItem('searchValue');
+  const savedSearchValue = localStorage.getItem('savedSearchValue');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -137,8 +138,9 @@ function App() {
     }
   };
 
-  const filterFilmsWithCheckbox = (filmsList) => {
+  const filterFilmsWithCheckbox = (filmsList, searchData) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
+    searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
     if (isCheckBoxActiveOnSavedMovies) {
       // Фильтрация по активному состоянию чекбокса и длительности
       searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
@@ -186,7 +188,7 @@ function App() {
     if (location.pathname === '/movies') {
       filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
     } else {
-      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')));
+      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')), savedSearchValue);
     }
   }, [isCheckBoxActive, isCheckBoxActiveOnSavedMovies]);
 
@@ -266,6 +268,10 @@ function App() {
         localStorage.clear();
         setLoggedIn(false);
         setIsSearchPerformed(false);
+        setFilms();
+        setFilteredFilms();
+        setLikedMovies([]);
+        setFilteredLikedMovies([]);
         navigate('/', { replace: true });
       })
       .catch((err) => console.log(err));
