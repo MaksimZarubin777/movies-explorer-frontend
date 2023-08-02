@@ -164,7 +164,7 @@ function App() {
       setIsLoading(false);
     }
     if (isCheckBoxActiveOnSavedMovies) {
-      filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
+      return filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
     }
     filterFilms(likedMovies, savedSearchValue);
   };
