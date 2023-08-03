@@ -24,7 +24,7 @@ import PopupLogin from '../Popup/PopupLogin.jsx';
 import PopupRegester from '../Popup/PopupRegester.jsx';
 import PopupProfileUpdate from '../Popup/PopupProfileUpdate.jsx';
 import PopupNoInput from '../Popup/PopupNoInput.jsx';
-import { SHORT_MOVIES_DURATION } from '../../vendor/constants';
+import { SHORT_MOVIES_DURATION } from '../../utils/constants';
 
 function App() {
   // стейт записи логина

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './MoviesCard.css';
 import MainApi from '../../utils/MainApi';
-import { BASE_URL, MINUTES_PER_HOUR } from '../../vendor/constants';
+import { BASE_URL, MINUTES_PER_HOUR } from '../../utils/constants';
 
 function MoviesCard({
   film,

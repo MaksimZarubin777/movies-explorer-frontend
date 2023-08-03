@@ -13,7 +13,7 @@ import {
   SCREEN_SIZE_LARGE,
   SCREEN_SIZE_MEDIUM,
   SCREEN_SIZE_SMALL,
-} from '../../vendor/constants';
+} from '../../utils/constants.js';
 
 function MoviesCardList({
   films,
