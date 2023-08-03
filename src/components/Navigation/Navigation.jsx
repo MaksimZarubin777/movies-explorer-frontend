@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import BurgerMenuContext from '../../context/BurgerMenuContext.jsx';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.jsx';
 
@@ -14,8 +14,8 @@ function Navigation({ isLoggedIn }) {
         <>
         <div className='navigation__container navigation__container_loggedIn'>
           <div className='navigation__films'>
-            <Link to='/movies' className='navigation__text'>Фильмы</Link>
-            <Link to='/saved-movies' className='navigation__text'>Сохраненные фильмы</Link>
+            <NavLink to='/movies' className='navigation__text' activeClassName='active'>Фильмы</NavLink>
+            <NavLink to='/saved-movies' className='navigation__text' activeClassName='active'>Сохраненные фильмы</NavLink>
           </div>
             <Link to='/profile' className='navigation__profile'/>
         </div>

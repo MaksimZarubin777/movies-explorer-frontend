@@ -11,6 +11,7 @@ function Movies({
   isError,
   setIsCheckBoxActive,
   likedMovies,
+  setLikedMovies,
   isLoaded,
   savedMovies,
   isCheckBoxActive,
@@ -30,6 +31,7 @@ function Movies({
           isSearchPerformed={isSearchPerformed}
           savedMovies={savedMovies}
           likedMovies={likedMovies}
+          setLikedMovies={setLikedMovies}
       />) : null}
     </>
   );

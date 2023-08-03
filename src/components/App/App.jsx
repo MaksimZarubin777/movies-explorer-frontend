@@ -20,7 +20,11 @@ import PageNotFound from '../PageNotFound/PageNotFound.jsx';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.jsx';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
-import Popup from '../Popup/Popup.jsx';
+import PopupLogin from '../Popup/PopupLogin.jsx';
+import PopupRegester from '../Popup/PopupRegester.jsx';
+import PopupProfileUpdate from '../Popup/PopupProfileUpdate.jsx';
+import PopupNoInput from '../Popup/PopupNoInput.jsx';
+import { SHORT_MOVIES_DURATION } from '../../utils/constants';
 
 function App() {
   // стейт записи логина
@@ -41,11 +45,22 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isLikedSearchPerformed, setIsLikedSearchPerformed] = useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
-  const [popUpIsOpen, setPopUpIsOpen] = useState(false);
+  const [isCheckBoxActiveOnSavedMovies, setIsCheckBoxActiveOnSavedMovies] = useState(false);
+  const [isTokenChecked, setIsTokenChecked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // popups
+  const [isPopupLoginOpen, setIsPopupLoginOpen] = useState(false);
+  const [isPopupRegisterOpen, setIsPopupRegisterOpen] = useState(false);
+  const [isPopupProfileUpdateOpen, setIsPopupProfileUpdateOpen] = useState(false);
+  const [isPopupNoInputOpen, setIsPopupNoInputOpen] = useState(false);
+  const [isProfileChanged, setisProfileChanged] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMoviesSearchValue, setSavedMoviesSearchedValue] = useState();
 
   const searchValue = localStorage.getItem('searchValue');
+  // const savedSearchValue = localStorage.getItem('savedSearchValue');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -54,9 +69,12 @@ function App() {
     MainApi.getUser()
       .then((user) => {
         setCurrentUser(user);
+        // setLoggedIn(true);
       })
       .catch(() => {
         setLoggedIn(false);
+        setIsSearchPerformed(false);
+        localStorage.clear();
         localStorage.removeItem('isLoggedIn');
         navigate('/', { replace: true });
       });
@@ -65,16 +83,17 @@ function App() {
   useEffect(() => {
     getContent();
   }, []);
-  console.log(loggedIn);
 
   // функция получения фильмов с лайком
   const getLikedMovies = () => {
     MainApi.getFilms()
       .then((data) => {
         setLikedMovies(data.data);
-        localStorage.setItem('likedMovies', JSON.stringify(data));
+        setFilteredLikedMovies(data.data);
+        localStorage.setItem('likedMovies', JSON.stringify(data.data));
         setisLoaded(true);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // функция получения данных пользователя
@@ -82,7 +101,8 @@ function App() {
     MainApi.getUser()
       .then((user) => {
         setCurrentUser(user);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // хук вызова функция полчения данных если пользователь залогинен
@@ -93,37 +113,59 @@ function App() {
     }
   }, [loggedIn]);
 
-  // функция удаления лайка
-  const handleMovieDelete = (movieId) => {
-    MainApi.deleteMovie(movieId)
-      .then(() => {
-        getLikedMovies();
-      })
-      .catch((err) => console.log(err));
-  };
+  useEffect(() => {
+    // При каждом изменении location.pathname сбрасываем значение
+    // isCheckBoxActiveOnSavedMovies в false
+    setIsCheckBoxActiveOnSavedMovies(false);
+    setSavedMoviesSearchedValue();
+  }, [location.pathname]);
 
   // функция фильтрации фильмов по поисковому запросу
   const filterFilms = (filmsList, searchData) => {
     let searchedFilms = filmsList ? [...filmsList] : [];
     // Фильтрация по поисковому запросу
     searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase().includes(searchData));
-
-    if (isCheckBoxActive) {
+    if (isCheckBoxActive && location.pathname === '/movies') {
       // Фильтрация по активному состоянию чекбокса и длительности
-      searchedFilms = searchedFilms.filter((film) => film.duration <= 40);
+      searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
     }
 
     if (location.pathname === '/movies') {
       setFilteredFilms(searchedFilms);
     } else {
       setFilteredLikedMovies(searchedFilms);
+      // localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
       setIsLikedSearchPerformed(true);
     }
   };
 
+  const filterFilmsWithCheckbox = (filmsList, searchData) => {
+    let searchedFilms = filmsList ? [...filmsList] : [];
+    if (searchData) {
+      searchedFilms = searchedFilms.filter((film) => film.nameRU.toLowerCase()
+        .includes(searchData));
+    }
+
+    if (isCheckBoxActiveOnSavedMovies) {
+      // Фильтрация по активному состоянию чекбокса и длительности
+      searchedFilms = searchedFilms.filter((film) => film.duration <= SHORT_MOVIES_DURATION);
+    }
+
+    setFilteredLikedMovies(searchedFilms);
+    localStorage.setItem('filteredLikedMovies', JSON.stringify(searchedFilms));
+    setIsLikedSearchPerformed(true);
+  };
+
   // функция поиска по лайкнутым фильмам
-  const handleSubmitSaved = (savedSearchValue) => {
-    filterFilms(likedMovies, savedSearchValue);
+  const handleSubmitSaved = (e, savedSearchValue) => {
+    if (e.target.elements.film.value === '') {
+      setIsPopupNoInputOpen(true);
+      setIsLoading(false);
+    }
+    if (isCheckBoxActiveOnSavedMovies) {
+      return filterFilms(JSON.parse(localStorage.getItem('filteredLikedMovies')), savedSearchValue);
+    }
+    return filterFilms(likedMovies, savedSearchValue);
   };
 
   // хук который сохраняет в локалсторедж отфильтрованные по поисковому запросу фильмы
@@ -149,15 +191,26 @@ function App() {
     filterFilms(films, searchValue);
   }, [films, searchValue]);
 
+  // хук фильтрации фильмов по активации чекбокса
+  useEffect(() => {
+    if (location.pathname === '/movies') {
+      filterFilms(JSON.parse(localStorage.getItem('films')), searchValue);
+    } else {
+      filterFilmsWithCheckbox(JSON.parse(localStorage.getItem('likedMovies')), savedMoviesSearchValue);
+    }
+  }, [isCheckBoxActive, isCheckBoxActiveOnSavedMovies]);
+
   // функция поиска фильма
   const handleSearch = (e) => {
-    setIsLoading(true);
     if (e.target.elements.film.value === '') {
-      alert('Нужно ввести ключевое слово');
-    } else {
+      setIsPopupNoInputOpen(true);
+      setIsLoading(false);
+    } else if (!isSearchPerformed) {
+      setIsLoading(true);
       MoviesApi.getMovies()
         .then((res) => {
           setFilms(res);
+          localStorage.setItem('films', JSON.stringify(res));
           setIsSearchPerformed(true);
         })
         .catch(() => {
@@ -166,35 +219,54 @@ function App() {
         .finally(() => {
           setIsLoading(false);
         });
+    } else {
+      const localFilms = JSON.parse(localStorage.getItem('films'));
+      setFilms(localFilms);
+      setIsLoading(false);
     }
   };
 
+  // хук проверки есть ли полный список фильмов в локалсторедж
+  useEffect(() => {
+    const localedFilms = JSON.parse(localStorage.getItem('films'));
+    if (localedFilms) {
+      setIsSearchPerformed(true);
+    }
+  }, []);
+
   // функция регистрации
   const handleRegister = async (values) => {
+    setIsSubmitting(true);
     const { email, password, name } = values;
     try {
       await MainApi.register(email, password, name);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
-      setPopUpIsOpen(true);
+      getLikedMovies();
+      setIsPopupRegisterOpen(true);
       navigate('/movies', { relace: true });
     } catch (err) {
+      setIsPopupRegisterOpen(true);
       console.log(err);
     }
+    setIsSubmitting(false);
   };
 
   // функция логина
   const handleLogin = async (email, password) => {
+    setIsSubmitting(true);
     try {
       await MainApi.login(email, password);
       localStorage.setItem('isLoggedIn', true);
       setLoggedIn(true);
-      setPopUpIsOpen(true);
+      setIsPopupLoginOpen(true);
+      getLikedMovies();
       navigate('/movies', { replace: true });
     } catch (err) {
-      setPopUpIsOpen(true);
+      setIsPopupLoginOpen(true);
       console.log(err);
     }
+    setIsSubmitting(false);
   };
 
   // функция логаута
@@ -203,26 +275,39 @@ function App() {
       .then(() => {
         localStorage.clear();
         setLoggedIn(false);
+        setIsSearchPerformed(false);
+        setFilms();
+        setFilteredFilms();
+        setLikedMovies([]);
+        setFilteredLikedMovies([]);
         navigate('/', { replace: true });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // функция обновления пользователя
   const handleUpdateUser = (data) => {
+    setIsSubmitting(true);
     MainApi.updateUserInfo(data)
       .then((newUserData) => {
         setCurrentUser(newUserData);
+        setIsPopupProfileUpdateOpen(true);
+        setisProfileChanged(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsPopupProfileUpdateOpen(true);
+      });
+    setIsSubmitting(false);
   };
 
   // функция проверки токена
   const checkIsLoggedIn = () => {
     const loginCheck = localStorage.getItem('isLoggedIn');
     if (loginCheck) {
-      navigate('/movies', { replace: true });
       setLoggedIn(true);
     }
+    setIsTokenChecked(true);
   };
 
   // // проверка токена
@@ -230,16 +315,38 @@ function App() {
     checkIsLoggedIn();
   }, []);
 
-  const closePopUp = () => {
-    setPopUpIsOpen(false);
+  const closeAllPopups = () => {
+    setIsPopupLoginOpen(false);
+    setIsPopupRegisterOpen(false);
+    setIsPopupProfileUpdateOpen(false);
+    setIsPopupNoInputOpen(false);
   };
 
   return (
     <div className="page">
       <BurgerMenuProvider>
       <CurrentUserContext.Provider value={currentUser}>
-      <Popup isOpen={popUpIsOpen} loggedIn={loggedIn} onClose={closePopUp}/>
-      <Routes>
+      <PopupLogin
+        isOpen={isPopupLoginOpen}
+        loggedIn={loggedIn}
+        onClose={closeAllPopups}
+      />
+      <PopupRegester
+        isOpen={isPopupRegisterOpen}
+        loggedIn={loggedIn}
+        onClose={closeAllPopups}
+      />
+      <PopupProfileUpdate
+        isOpen={isPopupProfileUpdateOpen}
+        isProfileChanged={isProfileChanged}
+        onClose={closeAllPopups}
+      />
+      <PopupNoInput
+        isOpen={isPopupNoInputOpen}
+        onClose={closeAllPopups}
+      />
+      {isTokenChecked && (
+        <Routes>
 
         <Route path="/" element={
           <>
@@ -260,7 +367,8 @@ function App() {
             isSearchPerformed={isSearchPerformed}
             isError={isError}
             setIsCheckBoxActive={setIsCheckBoxActive}
-            likedMovies={likedMovies}
+            likedMovies={JSON.parse(localStorage.getItem('likedMovies'))}
+            setLikedMovies={setLikedMovies}
             isLoaded={isLoaded}
             savedMovies={getLikedMovies}
             isCheckBoxActive={isCheckBoxActive}
@@ -277,9 +385,14 @@ function App() {
           handleSearch={handleSearch}
           likedMovies={isLikedSearchPerformed ? filteredLikedMovies : likedMovies}
           isLoaded={isLoaded}
-          onDelete={handleMovieDelete}
+          isLoading={isLoading}
+          isSearchPerformed={isSearchPerformed}
+          setLikedMovies={setLikedMovies}
+          setFilteredLikedMovies={setFilteredLikedMovies}
           handleSubmitSaved={handleSubmitSaved}
           setIsCheckBoxActive={setIsCheckBoxActive}
+          setIsCheckBoxActiveOnSavedMovies={setIsCheckBoxActiveOnSavedMovies}
+          setSavedMoviesSearchedValue={setSavedMoviesSearchedValue}
             />}
           <Footer />
           </>
@@ -293,14 +406,16 @@ function App() {
             isLoggedIn={loggedIn}
             handleUpdateUser={handleUpdateUser}
             logOut={handleLogout}
+            isSubmitting={isSubmitting}
           />
           </>
         }/>
 
-        <Route path="/signin" element={<Login onSubmit={handleLogin} />}/>
-        <Route path="/signup" element={<Register onSubmit={handleRegister}/>}/>
+        <Route path="/signin" element={<Login onSubmit={handleLogin} isSubmitting={isSubmitting} isLoggedIn={loggedIn}/>}/>
+        <Route path="/signup" element={<Register onSubmit={handleRegister} isSubmitting={isSubmitting} isLoggedIn={loggedIn}/>}/>
         <Route path="*" element={<PageNotFound />} />
-      </Routes>
+        </Routes>
+      )}
       </CurrentUserContext.Provider>
       </BurgerMenuProvider>
     </div>

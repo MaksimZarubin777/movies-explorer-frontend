@@ -1,23 +1,34 @@
 import { useEffect, useState } from 'react';
 import './MoviesCard.css';
 import MainApi from '../../utils/MainApi';
+import { BASE_URL, MINUTES_PER_HOUR } from '../../utils/constants';
 
 function MoviesCard({
   film,
-  savedMovies,
   likedMovies,
-  handleMovieDelete,
+  setLikedMovies,
+  setFilteredLikedMovies,
 }) {
   const currentPath = window.location.pathname;
-  const BASE_URL = 'https://api.nomoreparties.co';
   const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [isLikeError, setIsLikeError] = useState(false);
+
+  const handleClick = () => {
+    if (film.trailerLink) {
+      window.open(film.trailerLink, '_blank'); // Открываем ссылку в новом окне
+    }
+  };
 
   // функция проверки лайкнут ли уже фильм
   const checkIsFilmLiked = () => {
     const isFilmLiked = likedMovies && likedMovies
       .some((likedFilm) => likedFilm.movieId === film.id);
 
-    if (isFilmLiked) {
+    const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+    const isFilmLikedInLocalStorage = localLikedMovies
+      .some((likedFilm) => likedFilm.movieId === film.id);
+
+    if (isFilmLiked || isFilmLikedInLocalStorage) {
       setIsLikeClicked(true);
     } else {
       setIsLikeClicked(false);
@@ -33,22 +44,35 @@ function MoviesCard({
 
   // функция удаления лайка
   const filmLikeDelete = () => {
-    handleMovieDelete(film._id);
+    MainApi.deleteMovie(film._id)
+      .then((deletedFilm) => {
+        const filteredLocalLikedMovies = JSON.parse(localStorage.getItem('filteredLikedMovies')) || [];
+        const updatedFilteredLikedMovies = filteredLocalLikedMovies
+          .filter((movie) => movie._id !== deletedFilm.data._id);
+        localStorage.setItem('filteredLikedMovies', JSON.stringify(updatedFilteredLikedMovies));
+        setFilteredLikedMovies(updatedFilteredLikedMovies);
+
+        const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+        const updatedLikedMovies = localLikedMovies
+          .filter((movie) => movie._id !== deletedFilm.data._id);
+        localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+        setLikedMovies(updatedLikedMovies);
+      });
   };
 
   // функция конвертации минут в часы
   const convertMinutesToHours = (minutes) => {
-    if (minutes < 60) {
+    if (minutes < MINUTES_PER_HOUR) {
       return `${minutes}мин`;
     }
 
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
+    const hours = Math.floor(minutes / MINUTES_PER_HOUR);
+    const remainingMinutes = minutes % MINUTES_PER_HOUR;
 
     if (hours === 0) {
-      return `${remainingMinutes}мин`;
+      return `${remainingMinutes} мин`;
     }
-    return `${hours}ч ${remainingMinutes}мин`;
+    return `${hours}ч ${remainingMinutes} мин`;
   };
 
   // функция лайка/дизлайка
@@ -69,6 +93,7 @@ function MoviesCard({
     } = film;
     const filmToLike = likedMovies && likedMovies
       .find((movie) => movie.movieId === id);
+
     if (!filmToLike) {
       MainApi.saveMovie({
         country,
@@ -83,27 +108,39 @@ function MoviesCard({
         nameRU,
         nameEN,
       })
-        .then(() => savedMovies())
+        .then((movie) => {
+          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+          localLikedMovies.push(movie.data);
+          localStorage.setItem('likedMovies', JSON.stringify(localLikedMovies));
+          setLikedMovies(localLikedMovies);
+        })
         .catch((err) => {
+          setIsLikeError(true);
           console.log(err);
         });
     } else if (filmToLike) {
       MainApi.deleteMovie(filmToLike._id)
         .then(() => {
-          savedMovies();
+          const localLikedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+          const updatedLikedMovies = localLikedMovies.filter((movie) => movie.movieId !== id);
+          localStorage.setItem('likedMovies', JSON.stringify(updatedLikedMovies));
+          setLikedMovies(updatedLikedMovies);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setIsLikeError(true);
+          console.log(err);
+        });
     }
   };
 
   return (
     <div className='movies-card'>
-        <img src={currentPath === '/saved-movies' ? film.image : BASE_URL + film.image.url} alt='' className='movies-card__img'></img>
+        <img src={currentPath === '/saved-movies' ? film.image : BASE_URL + film.image.url} alt='' className='movies-card__img' onClick={handleClick}></img>
         <h3 className='movies-card__title'>{film.nameRU}</h3>
         {currentPath === '/saved-movies' ? (
           <span className='movies-card__delete' onClick={filmLikeDelete}/>
         ) : (
-          <span className={isLikeClicked ? 'movies-card__like movies-card__like_on' : 'movies-card__like movies-card__like_off'} onClick={handleIsLiked}/>
+          <span className={isLikeClicked && !isLikeError ? 'movies-card__like movies-card__like_on' : 'movies-card__like movies-card__like_off'} onClick={handleIsLiked}/>
         )}
         <p className='movies-card__duration'>{convertMinutesToHours(film.duration)}</p>
     </div>

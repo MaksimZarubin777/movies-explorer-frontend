@@ -1,13 +1,21 @@
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import CustomForm from '../Form/Form.jsx';
 
-function Login({ onSubmit }) {
+function Login({ onSubmit, isSubmitting, isLoggedIn }) {
   const handleSubmit = (value) => {
-    console.log(value);
     const { email, password } = value;
     onSubmit(email, password);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, []);
 
   return (
     <div className='login'>
@@ -17,7 +25,7 @@ function Login({ onSubmit }) {
         <CustomForm inputs={[
           { name: 'E-mail', field: 'email' },
           { name: 'Пароль', field: 'password' },
-        ]} button={'Войти'} onSubmit={handleSubmit}/>
+        ]} button={'Войти'} onSubmit={handleSubmit} isSubmitting={isSubmitting}/>
         <p className='login__button-subtitle'>Ещё не зарегистрированы? <Link to='/signup' className='login__button-subtitle_orange'>Регистрация</Link></p>
       </div>
     </div>

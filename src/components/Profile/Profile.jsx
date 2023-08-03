@@ -9,10 +9,20 @@ import {
 import * as Yup from 'yup';
 import CurrentUserContext from '../../context/CurrentUserContext.jsx';
 import './Profile.css';
+import Preloader from '../Preloader/Preloader.jsx';
 
-function Profile({ handleUpdateUser, logOut }) {
+function Profile({ handleUpdateUser, logOut, isSubmitting }) {
   const currentUser = useContext(CurrentUserContext);
   const [edit, setEdit] = useState(true);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  // Проверяем, загрузились ли данные пользователя
+  useEffect(() => {
+    if (currentUser.data) {
+      setIsDataLoaded(true);
+    }
+  }, [currentUser]);
+
   // функция разблокировки редактирования
   const handleEdit = () => {
     setEdit(false);
@@ -35,6 +45,8 @@ function Profile({ handleUpdateUser, logOut }) {
   const handleSubmit = (values) => {
     handleUpdateUser(values);
     setEdit(true);
+    const formik = useFormikContext();
+    formik.resetForm();
   };
 
   // настройки кнопки сабмита
@@ -58,8 +70,8 @@ function Profile({ handleUpdateUser, logOut }) {
     return (
       <button
         type="submit"
-        className={isValid ? 'profile__button' : 'profile__button profile__button_disabled'}
-        disabled={!isValid}
+        className={isValid && formik.dirty ? 'profile__button' : 'profile__button profile__button_disabled'}
+        disabled={!formik.dirty || isSubmitting}
       >
         Сохранить
       </button>
@@ -68,6 +80,8 @@ function Profile({ handleUpdateUser, logOut }) {
 
   return (
     <div className="profile">
+      {isDataLoaded ? (
+      <>
       <h2 className="profile__title">Привет, {currentUser.data.name}!</h2>
       <Formik
         initialValues={initialValues}
@@ -107,6 +121,8 @@ function Profile({ handleUpdateUser, logOut }) {
           )}
         </Form>
       </Formik>
+      </>
+      ) : (<Preloader />)}
     </div>
   );
 }

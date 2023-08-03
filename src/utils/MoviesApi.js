@@ -1,5 +1,6 @@
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable class-methods-use-this */
+// е
 class Api {
   constructor(options) {
     this._options = options;

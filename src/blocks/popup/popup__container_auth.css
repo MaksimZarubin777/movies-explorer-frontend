@@ -9,3 +9,27 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media screen and (max-width: 1100px) {
+  .popup__container_auth {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .popup__container_auth {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .popup__container_auth {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .popup__container_auth {
+    width: 88.13%;
+  }
+}

@@ -3,7 +3,11 @@ import './Popup.css';
 import authOk from '../../images/auth_v.svg';
 import authBad from '../../images/auth_x.svg';
 
-function Popup({ onClose, loggedIn, isOpen }) {
+function PopupLogin({
+  onClose,
+  loggedIn,
+  isOpen,
+}) {
   // закрытие попапа через эскейп
   useEffect(() => {
     function handleEscapeClose(event) {
@@ -38,18 +42,18 @@ function Popup({ onClose, loggedIn, isOpen }) {
         <button className="popup__button-close" id="popup-auth-close" type="button" onClick={onClose}></button>
         {loggedIn ? (
           <>
-          <img src={authOk} className='popup__auth_image'></img>
-          <h3 className="popup__auth_h3">Все прошло успешно!</h3>
+            <img src={authOk} className='popup__auth_image' alt='Success'></img>
+            <h3 className="popup__auth_h3">Рады снова видеть!</h3>
           </>
         ) : (
-          <>
-          <img src={authBad} className='popup__auth_image'></img>
-          <h3 className="popup__auth_h3">Что-то пошло не так! Попробуйте ещё раз.</h3>
-          </>
+        <>
+          <img src={authBad} className='popup__auth_image' alt='Success'></img>
+          <h3 className="popup__auth_h3">Что-то пошло не так</h3>
+        </>
         )}
       </div>
     </div>
   );
 }
 
-export default Popup;
+export default PopupLogin;
